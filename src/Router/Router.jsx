@@ -3,6 +3,10 @@ import Main from "../Layout/Main/Main";
 import ErrorPage from "../Page/ErrorPage";
 import Home from "../Page/Home";
 import Dashboard from "../Layout/Dashboard/Dashboard";
+import Login from "../auth/Login";
+import Register from "../auth/Register";
+import AvailableCamp from "../Page/AvailableCamp";
+
 
 const router = createBrowserRouter([
   {
@@ -13,6 +17,18 @@ const router = createBrowserRouter([
       {
         path:'/',
         element:<Home/>
+      },
+      {
+        path:'/availableCamp',
+        element:<AvailableCamp/>
+      },
+      {
+        path:'/login',
+        element:<Login/>
+      },
+      {
+        path:'/register',
+        element:<Register/>
       }
     ]
   },

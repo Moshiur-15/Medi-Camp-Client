@@ -6,7 +6,7 @@ import NavBer from "../../Components/Shard/NavBer";
 const Main = () => {
   return (
     <div className="bg-background">
-      <div className="bg-white">
+      <div className="bg-white sticky z-50 top-0">
         <NavBer />
       </div>
       <div className="min-h-[calc(100vh-360px)]">
