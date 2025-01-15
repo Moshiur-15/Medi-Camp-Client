@@ -8,9 +8,9 @@ const Newsletter = () => {
     e.target.reset()
   };
   return (
-    <section className="px-6  lg:px-24 xl:px-0 mx-0 xl:mx-16">
+    <section className="mx-0 xl:mx-16">
       <div
-        className="relative py-12 rounded-lg"
+        className="relative py-12 lg:rounded-lg"
         style={{
           backgroundImage: `url(${newsletter})`,
           backgroundSize: "cover",
@@ -18,7 +18,7 @@ const Newsletter = () => {
           backgroundRepeat: "no-repeat",
         }}
       >
-        <div className="absolute bg-black opacity-50 inset-0 rounded-lg"></div>
+        <div className="absolute bg-black opacity-50 inset-0 lg:rounded-lg"></div>
         <div className="container mx-auto text-center text-white px-6 relative my-10 lg:my-16">
           <h2 className="text-xl md:text-2xl font-bold font-merriweather">
             Get the Latest Medi Camp Updates

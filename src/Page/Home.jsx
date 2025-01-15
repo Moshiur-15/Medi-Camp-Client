@@ -13,13 +13,13 @@ const Home = () => {
         <PopulerCamp />
       </div>
       <div>
-        <Feedback/>
+        <Feedback />
       </div>
-      <div>
-        <FAQSection />
+      <div className="container mx-auto">
+        <Newsletter />
       </div>
       <div className="my-14 lg:my-16 container mx-auto">
-        <Newsletter/>
+        <FAQSection />
       </div>
     </div>
   );

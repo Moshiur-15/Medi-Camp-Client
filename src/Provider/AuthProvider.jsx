@@ -31,7 +31,7 @@ export default function AuthProvider({ children }) {
     return signOut(auth);
   };
   // google provider
-  const googleProvider = () => {
+  const googleLogin = () => {
     return signInWithPopup(auth, provider);
   };
   // update profile
@@ -46,6 +46,7 @@ export default function AuthProvider({ children }) {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setLoading(false);
+      console.log(currentUser)
       return () => unsubscribe();
     });
   }, []);
@@ -57,7 +58,8 @@ export default function AuthProvider({ children }) {
     loginUser,
     createUser,
     updateUserProfile,
-    googleProvider,
+    googleLogin,
+    setLoading,
   };
   return (
     <AuthContext.Provider value={authInfo}>
