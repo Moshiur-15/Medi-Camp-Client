@@ -6,7 +6,7 @@ import { Link, NavLink } from "react-router-dom";
 export default function NavBer() {
   return (
     <div className="container mx-auto">
-      <Navbar fluid rounded className="bg-background bg-white">
+      <Navbar fluid rounded className="bg-background bg-white mx-0 lg:mx-6 xl:mx-14">
         <Navbar.Brand>
           <img src={Logo} className="h-6 sm:h-6" alt="Flowbite React Logo" />
           <img src={Name} className="h-6 sm:h-6" alt="Flowbite React Logo" />
