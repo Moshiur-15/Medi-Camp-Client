@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { imgUp } from "../api/Utils";
 import useAuth from "../Hook/useAuth";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import usePublic from "../Hook/usePublic";
 
 const Register = () => {
   const { createUser, updateUserProfile, loading, setLoading, googleLogin } =
@@ -16,7 +17,7 @@ const Register = () => {
     formState: { errors },
     reset,
   } = useForm();
-
+  const axiosSecure = usePublic();
   const onSubmit = async (data) => {
     const email = data.email;
     const password = data.password;
@@ -30,11 +31,17 @@ const Register = () => {
       const imgData = await imgUp(img);
       await createUser(email, password);
       await updateUserProfile(name, imgData);
+      const { data } = await axiosSecure.post(`/users/${email}`, {
+        name: name,
+        email: email,
+        photo: imgData,
+      });
+      console.log(data);
       reset();
       toast.success("Registration successful!");
       navigate("/");
     } catch (err) {
-      console.log(err)
+      console.log(err);
       toast.error(err?.message);
     } finally {
       setLoading(false);
@@ -43,10 +50,15 @@ const Register = () => {
 
   const handleGoogleSignIn = async () => {
     try {
-      await googleLogin();
-
+      const res = await googleLogin();
+      const user = res?.user;
+      const { data } = await axiosSecure.post(`/users/${user?.email}`, {
+        name: user?.displayName,
+        email: user?.email,
+        photo: user?.photoURL,
+      });
+      console.log(data);
       navigate("/");
-      toast.success("Registration Successful");
     } catch (err) {
       console.log(err);
       toast.error(err?.message);

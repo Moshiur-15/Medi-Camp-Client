@@ -9,8 +9,10 @@ import {
 } from "firebase/auth";
 import React, { createContext, useEffect, useState } from "react";
 import { auth } from "../Firebase/firebase.config";
+import usePublic from "../Hook/usePublic";
 export const AuthContext = createContext();
 export default function AuthProvider({ children }) {
+  const axiosSecure = usePublic();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const provider = new GoogleAuthProvider();
@@ -43,10 +45,10 @@ export default function AuthProvider({ children }) {
   };
   // onAuthStateChanged
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      console.log(currentUser);
       setUser(currentUser);
       setLoading(false);
-      console.log(currentUser)
       return () => unsubscribe();
     });
   }, []);
@@ -62,8 +64,6 @@ export default function AuthProvider({ children }) {
     setLoading,
   };
   return (
-    <AuthContext.Provider value={authInfo}>
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );
 }

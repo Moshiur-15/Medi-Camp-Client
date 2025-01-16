@@ -4,13 +4,20 @@ import Name from "../../assets/name.jpg";
 import Logo from "../../assets/logo.jpg";
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../Hook/useAuth";
-import toast from 'react-hot-toast'
+import toast from "react-hot-toast";
 export default function NavBer() {
-  const { user, logOut } = useAuth();
+  const { user, logOut, setUser } = useAuth();
   const handleLogOut = async () => {
-    await logOut();
-    toast.success('Log out successfully')
+    try {
+      await logOut();
+      setUser(null);
+      toast.success("Log out successfully");
+    } catch (error) {
+      console.error(error);
+      toast.error(error?.message);
+    }
   };
+
   return (
     <div className="container mx-auto">
       <Navbar
@@ -54,31 +61,28 @@ export default function NavBer() {
 
           <Navbar.Toggle />
         </div>
-        <Navbar.Collapse>
-          <Navbar.Link className="text-base">
-            <NavLink
-              className={({ isActive }) =>
-                `hover:text-blue-500 font-semibold w-full text-left ${
-                  isActive ? "text-blue-600 underline" : "text-black"
-                }`
-              }
-              to="/"
-            >
-              Home
-            </NavLink>
-          </Navbar.Link>
-          <Navbar.Link className="text-base">
-            <NavLink
-              className={({ isActive }) =>
-                `hover:text-blue-500 font-semibold w-full text-left ${
-                  isActive ? "text-blue-600 underline" : "text-black"
-                }`
-              }
-              to="/availableCamp"
-            >
-              Available Camps
-            </NavLink>
-          </Navbar.Link>
+        <Navbar.Collapse className="text-center gap-6">
+          <NavLink
+            className={({ isActive }) =>
+              `hover:text-blue-500 font-bold ${
+                isActive ? "text-blue-500 underline" : "text-black"
+              }`
+            }
+            to="/"
+          >
+            Home
+          </NavLink>
+
+          <NavLink
+            className={({ isActive }) =>
+              `hover:text-blue-500 font-bold ${
+                isActive ? "text-blue-500 underline" : "text-black"
+              }`
+            }
+            to="/availableCamp"
+          >
+            Available Camp
+          </NavLink>
         </Navbar.Collapse>
       </Navbar>
     </div>

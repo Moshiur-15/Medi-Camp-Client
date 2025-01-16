@@ -6,6 +6,7 @@ import Dashboard from "../Layout/Dashboard/Dashboard";
 import Login from "../auth/Login";
 import Register from "../auth/Register";
 import AvailableCamp from "../Page/AvailableCamp";
+import PrivateRoute from "./PrivateRoute";
 
 
 const router = createBrowserRouter([
