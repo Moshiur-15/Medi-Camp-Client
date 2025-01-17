@@ -13,7 +13,7 @@ const PopulerCamp = () => {
   }, []);
   const fetchData = async () => {
     try {
-      const { data } = await axiosSecure.get("/camps");
+      const { data } = await axiosSecure.get(`/camps`);
       setCampsData(data);
       console.log(data);
       setLoading(false);

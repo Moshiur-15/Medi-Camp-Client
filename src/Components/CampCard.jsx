@@ -38,8 +38,10 @@ const CampCard = ({ camp }) => {
         <div className="flex flex-wrap justify-between items-center gap-4">
           <p className="flex items-center gap-2 text-gray-700 text-sm">
             <FaUserMd className="text-blue-500" />
-            {healthcareProfessional.name} (
-            {healthcareProfessional.specialization})
+            {healthcareProfessional.name}{" "}
+            <span className="text-blue-700">
+              ( {healthcareProfessional.specialization} )
+            </span>
           </p>
           <p className="flex items-center gap-2 text-gray-700 text-sm">
             <FaMapMarkerAlt className="text-blue-500" />
@@ -59,7 +61,7 @@ const CampCard = ({ camp }) => {
         </div>
 
         <div className="flex flex-wrap items-center gap-4">
-          <p className="flex items-center gap-2 text-gray-700 text-sm w-1/3">
+          <p className="flex items-center gap-2 text-gray-700">
             <FaCalendarAlt className="text-blue-500" />
             {date}
           </p>
