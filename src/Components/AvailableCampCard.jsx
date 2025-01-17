@@ -87,7 +87,7 @@ const AvailableCampCard = ({ camp, layout }) => {
         </div>
 
         <div className="mt-6">
-          <Link to={`/camps/${_id}`}>
+          <Link to={`/campsDetails/${_id}`}>
             <Button
               color=""
               className="bg-blue-500 hover:bg-blue-600 text-white px-4 rounded-lg w-full"

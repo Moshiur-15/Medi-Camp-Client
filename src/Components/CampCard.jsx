@@ -70,7 +70,7 @@ const CampCard = ({ camp }) => {
         </div>
       </div>
       <div className="mt-auto">
-        <Link to={`/camps/${_id}`}>
+        <Link to={`/campsDetails/${_id}`}>
           <Button
             color=""
             className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-1 rounded-lg w-full"
