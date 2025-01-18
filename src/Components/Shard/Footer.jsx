@@ -1,5 +1,5 @@
-import logo from "../../assets/logo.jpg";
-import name from "../../assets/name.jpg";
+import logo from "../../assets/logo.png";
+import name from "../../assets/name.png";
 import { IoMdHome } from "react-icons/io";
 import { MdEmail } from "react-icons/md";
 import { FaPhoneFlip } from "react-icons/fa6";

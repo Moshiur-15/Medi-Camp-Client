@@ -7,7 +7,11 @@ import Login from "../auth/Login";
 import Register from "../auth/Register";
 import AvailableCamp from "../Page/AvailableCamp";
 import CampDetails from "../Components/campDetails";
-
+import WelcomeDashboard from "../Components/Dashboard/WelcomeDashboard";
+import OrganizerProfile from "../Page/Dashboard/OrganizerProfile";
+import UserProfile from "../Page/Dashboard/UserProfile";
+import PrivateRoute from "./PrivateRoute";
+import AddCamp from "../Page/Dashboard/AddCamp";
 
 const router = createBrowserRouter([
   {
@@ -40,12 +44,24 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     errorElement: <ErrorPage />,
-    element: <Dashboard/>,
+    element: <PrivateRoute><Dashboard/></PrivateRoute>,
     children: [
       {
         path: '/dashboard',
-        element: <div>Dashboard</div>
-      }
+        element: <WelcomeDashboard/>
+      },
+      {
+        path: 'organizerProfile',
+        element: <OrganizerProfile/>
+      },
+      {
+        path: 'userProfile',
+        element: <UserProfile/>
+      },
+      {
+        path: 'add-camp',
+        element: <AddCamp/>
+      },
     ]
   }
 ]);

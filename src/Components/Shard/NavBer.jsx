@@ -1,7 +1,7 @@
 import React from "react";
 import { Avatar, Button, Dropdown, Navbar, Toast } from "flowbite-react";
-import Name from "../../assets/name.jpg";
-import Logo from "../../assets/logo.jpg";
+import Name from "../../assets/name.png";
+import Logo from "../../assets/logo.png";
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../Hook/useAuth";
 import toast from "react-hot-toast";
@@ -44,7 +44,18 @@ export default function NavBer() {
                   {user?.email}
                 </span>
               </Dropdown.Header>
-              <Dropdown.Item>Dashboard</Dropdown.Item>
+              <Dropdown.Item>
+                <NavLink
+                  className={({ isActive }) =>
+                    `hover:text-blue-500 font-bold ${
+                      isActive ? "text-blue-500 underline" : "text-black"
+                    }`
+                  }
+                  to="/dashboard"
+                >
+                  Dashboard
+                </NavLink>
+              </Dropdown.Item>
               <Dropdown.Divider />
               <Dropdown.Item onClick={handleLogOut}>Log Out</Dropdown.Item>
             </Dropdown>

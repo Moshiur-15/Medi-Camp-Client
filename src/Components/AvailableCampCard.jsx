@@ -81,7 +81,7 @@ const AvailableCampCard = ({ camp, layout }) => {
             </p>
             <p className="flex items-center gap-2 text-gray-700">
               <FaClock className="text-blue-500" />
-              {time}
+              {time?.startTime} - {time?.endTime}
             </p>
           </div>
         </div>
