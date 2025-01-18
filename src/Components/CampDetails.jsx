@@ -19,21 +19,20 @@ const CampDetails = () => {
   const axiosSecure = usePublic();
   const [camp, setCamp] = useState([]);
   const [loading, setLoading] = useState(true);
-  console.log(id);
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [id]);
   const fetchData = async () => {
     try {
       const { data } = await axiosSecure.get(`/campsDetails/${id}`);
       setCamp(data);
-      console.log(data);
-      setLoading(false);
     } catch (error) {
       console.error("Error fetching camp data:", error);
     }
+    finally{
+      setLoading(false);
+    }
   };
-  console.log(camp);
   const {
     image,
     campName,
@@ -46,17 +45,18 @@ const CampDetails = () => {
     date,
     description,
   } = camp || {};
-  const {user} = useAuth();
+  const { user } = useAuth();
   const [open, setOpen] = useState(false);
+
   return (
     <section className="py-10 lg:py-16">
       <div className="container mx-auto">
         {loading ? (
           <LoadingSpinner />
         ) : (
-          <div className="nd:mx-10 xl:mx-16">
+          <div className="mx-5 md:mx-10 xl:mx-16">
             <div className="flex flex-col lg:flex-row bg-white rounded-lg sm:mx-20 items-center">
-              <div className="lg:w-1/2 w-full">
+              <div className="lg:w-1/2 w-full h-full">
                 <img
                   className="w-full h-full object-cover"
                   src={image}
@@ -64,11 +64,11 @@ const CampDetails = () => {
                 />
               </div>
 
-              <div className="lg:w-1/2 p-6 w-full">
+              <div className="lg:w-1/2 p-6 w-full ">
                 <h2 className="text-2xl font-bold mb-2 text-gray-800">
                   {campName}
                 </h2>
-                <p className="text-gray-600 mb-4">{description}</p>
+                <p className="text-gray-600 mb-4">{description} Sessions on mental health awareness and free psychological consultations.Sessions on mental health awareness and free psychological consultations.Sessions on mental health awareness and free psychological consultations.</p>
                 <div className="bg-blue-100 rounded-lg p-4">
                   <h3 className="font-bold text-blue-900">
                     Additional Information
@@ -121,10 +121,19 @@ const CampDetails = () => {
                   disabled={!user}
                   className="mt-3 bg-blue-500 text-white hover:bg-blue-600  px-4 py-1 rounded-lg w-full"
                 >
-                  <img src="https://img.icons8.com/?size=100&id=99995&format=png&color=FFFFFF" className="h-5 w-5 mr-2" alt="" />
+                  <img
+                    src="https://img.icons8.com/?size=100&id=99995&format=png&color=FFFFFF"
+                    className="h-5 w-5 mr-2"
+                    alt=""
+                  />
                   <span className="">Join Camp</span>
                 </Button>
-                <CampJoinModal camp={camp} user={user} setOpen={setOpen} open={open}  />
+                <CampJoinModal
+                  camp={camp}
+                  user={user}
+                  setOpen={setOpen}
+                  open={open}
+                />
               </div>
             </div>
           </div>

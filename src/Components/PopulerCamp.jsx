@@ -3,6 +3,7 @@ import CampCard from "./CampCard";
 import usePublic from "../Hook/usePublic";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import LoadingSpinner from "./LoadingSpinner";
 
 const PopulerCamp = () => {
   const axiosSecure = usePublic();
@@ -31,7 +32,7 @@ const PopulerCamp = () => {
         participants. Join now to secure your spot!
       </p>{" "}
       {loading ? (
-        "loading"
+        <LoadingSpinner/>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 px-6  lg:px-10 xl:px-0">
           {campsData
