@@ -8,6 +8,7 @@ const AddCamp = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
   const { user } = useAuth();
@@ -15,8 +16,6 @@ const AddCamp = () => {
 
   const onSubmit = async (data) => {
     try {
-      console.log("Form Data Submitted:", data);
-
       const healthcareProfessional = {
         specialization: data.specialization,
         name: data.healthcareProfessionalName,
@@ -25,7 +24,11 @@ const AddCamp = () => {
         startTime: data.startTime,
         endTime: data.endTime,
       };
-      const fees = parseInt(data.fees);
+      const fees = parseInt(data.feesData);
+      if (isNaN(fees) || fees <= 0) {
+        toast.error("Please enter a valid positive fee amount.");
+        return;
+      }
       const img = data.image[0];
       const image = await imgUp(img);
 
@@ -46,6 +49,7 @@ const AddCamp = () => {
       console.log(res);
       if (res.insertedId) {
         toast.success("Camp Added Successfully!👍👍👍");
+        reset();
       }
     } catch (error) {
       console.error("Error adding camp:", error);
@@ -136,12 +140,18 @@ const AddCamp = () => {
             </label>
             <input
               type="number"
-              {...register("fees", { required: "Fees is required" })}
+              {...register("feesData", {
+                required: "Fees is required",
+                validate: (value) =>
+                  value > 0 || "Fees must be a positive number",
+              })}
               placeholder="Camp Fees"
-              className="bg-gray-200 w-full p-2 rounded-sm"
+              className="bg-gray-200 w-full p-2 rounded-sm border-none"
             />
-            {errors.fees && (
-              <p className="text-red-500 text-sm mt-1">{errors.fess.message}</p>
+            {errors.feesData && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.feesData.message}
+              </p>
             )}
           </div>
           <div>
@@ -151,7 +161,7 @@ const AddCamp = () => {
             <input
               type="date"
               {...register("date", { required: "Camp Date is required" })}
-              className="bg-gray-200 w-full p-2 rounded-sm"
+              className="bg-gray-200 w-full p-2 rounded-sm border-none"
             />
             {errors.date && (
               <p className="text-red-500 text-sm mt-1">{errors.date.message}</p>
@@ -168,7 +178,7 @@ const AddCamp = () => {
             <input
               {...register("startTime", { required: "Time is required" })}
               placeholder="Ex: 10:00 AM "
-              className="bg-gray-200 w-full p-2 rounded-sm"
+              className="bg-gray-200 w-full p-2 rounded-sm border-none"
               type="time"
             />
             {errors.startTime && (
@@ -184,7 +194,7 @@ const AddCamp = () => {
             <input
               {...register("endTime", { required: "Time is required" })}
               placeholder="Ex: 10:00 AM - 2:00 PM"
-              className="bg-gray-200 w-full p-2 rounded-sm"
+              className="bg-gray-200 w-full p-2 rounded-sm border-none"
               type="time"
             />
             {errors.endTime && (
@@ -225,7 +235,7 @@ const AddCamp = () => {
             })}
             placeholder="Write about the camp."
             rows={6}
-            className="bg-gray-200 w-full p-2 rounded-sm"
+            className="bg-gray-200 w-full p-2 rounded-sm border-none"
           />
           {errors.description && (
             <p className="text-red-500 text-sm mt-1">

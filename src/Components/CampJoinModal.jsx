@@ -25,6 +25,7 @@ const CampJoinModal = ({ setOpen, open, camp, user }) => {
 
       const formData = {
         participantEmail,
+        participantStatus:'pending',
         participantName,
         gender,
         phone,

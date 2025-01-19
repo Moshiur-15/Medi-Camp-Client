@@ -5,9 +5,8 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import banner1 from "../assets/banner.jpg";
-import banner2 from "../assets/banner.jpg";
-import banner3 from "../assets/banner.jpg";
-
+import banner2 from "../assets/banner-3.png";
+import banner3 from "../assets/banner-4.jpg";
 export default function Banner() {
   const banners = [
     {

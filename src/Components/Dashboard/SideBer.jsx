@@ -57,7 +57,7 @@ const SideBer = () => {
           />
           <button
             onClick={handleLogOut}
-            className="flex items-center px-2.5 hover:bg-gray-100 w-full"
+            className="flex items-center px-1 hover:bg-gray-100 w-full"
           >
             <span>
               <FaSignOutAlt className="mr-2 text-xl" />{" "}
