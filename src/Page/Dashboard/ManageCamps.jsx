@@ -81,34 +81,36 @@ export function ManageCamps() {
 
   return (
     <section className="lg:mx-14 mt-4">
+      <h2 className="font-merriweather font-bold text-center my-5 text-xl md:text-3xl">
+        Manage Camps
+      </h2>
       <div className="overflow-x-auto">
         <Table hoverable className="text-center">
-          <TableHead>
+          <TableHead className="border">
             <TableHeadCell>Camp name</TableHeadCell>
-            <TableHeadCell>Location</TableHeadCell>
+            <TableHeadCell className="border">Location</TableHeadCell>
             <TableHeadCell>Professional</TableHeadCell>
-            <TableHeadCell>Date</TableHeadCell>
+            <TableHeadCell className="border">Date</TableHeadCell>
             <TableHeadCell>Time</TableHeadCell>
-            <TableHeadCell>Action</TableHeadCell>
+            <TableHeadCell className="border">Action</TableHeadCell>
           </TableHead>
-          <TableBody className="divide-y">
+          <TableBody className="divide-y border">
             {camps
-              ?.slice(0, 15)
               .reverse()
               .map((camp) => (
                 <TableRow
                   key={camp?._id}
                   className="bg-white dark:border-gray-700 dark:bg-gray-800"
                 >
-                  <TableCell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                  <TableCell className="whitespace-nowrap font-medium text-gray-900 border">
                     {camp?.campName}
                   </TableCell>
-                  <TableCell>{camp?.location}</TableCell>
-                  <TableCell>
+                  <TableCell className="">{camp?.location}</TableCell>
+                  <TableCell className="border">
                     {camp?.healthcareProfessional?.specialization}
                   </TableCell>
-                  <TableCell>{camp?.date}</TableCell>
-                  <TableCell>
+                  <TableCell className="">{camp?.date}</TableCell>
+                  <TableCell className="border">
                     {camp?.time?.startTime} - {camp?.time?.endTime}
                   </TableCell>
                   <TableCell className="flex items-center justify-around translate-y-1/2 lg:translate-y-0 text-xl">
