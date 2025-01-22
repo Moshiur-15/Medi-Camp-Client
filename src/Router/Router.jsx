@@ -14,65 +14,107 @@ import PrivateRoute from "./PrivateRoute";
 import AddCamp from "../Page/Dashboard/AddCamp";
 import { ManageCamps } from "../Page/Dashboard/ManageCamps";
 import ManageRegisteredCamps from "../Page/Dashboard/ManageRegisteredCamps";
+import Analytics from "../Page/Dashboard/Analytics";
 
 const router = createBrowserRouter([
   {
     path: "/",
     errorElement: <ErrorPage />,
-    element: <Main/>,
-    children:[
+    element: <Main />,
+    children: [
       {
-        path:'/',
-        element:<Home/>
+        path: "/",
+        element: <Home />,
       },
       {
-        path:'/availableCamp',
-        element:<AvailableCamp/>
+        path: "/availableCamp",
+        element: <AvailableCamp />,
       },
       {
-        path:'/campsDetails/:id',
-        element:<CampDetails/>
+        path: "/campsDetails/:id",
+        element: <CampDetails />,
       },
       {
-        path:'/login',
-        element:<Login/>
+        path: "/login",
+        element: <Login />,
       },
       {
-        path:'/register',
-        element:<Register/>
-      }
-    ]
+        path: "/register",
+        element: <Register />,
+      },
+    ],
   },
   {
     path: "/dashboard",
     errorElement: <ErrorPage />,
-    element: <PrivateRoute><Dashboard/></PrivateRoute>,
+    element: (
+      <PrivateRoute>
+        <Dashboard />
+      </PrivateRoute>
+    ),
     children: [
       {
-        path: '/dashboard',
-        element: <WelcomeDashboard/>
+        path: "/dashboard",
+        element: (
+          <PrivateRoute>
+            <WelcomeDashboard />
+          </PrivateRoute>
+        ),
+      },
+
+      // organizer related
+      {
+        path: "organizerProfile",
+        element: (
+          <PrivateRoute>
+            <OrganizerProfile />
+          </PrivateRoute>
+        ),
+      },
+
+      {
+        path: "add-camp",
+        element: (
+          <PrivateRoute>
+            <AddCamp />
+          </PrivateRoute>
+        ),
       },
       {
-        path: 'organizerProfile',
-        element: <OrganizerProfile/>
+        path: "manage-camps",
+        element: (
+          <PrivateRoute>
+            <ManageCamps />
+          </PrivateRoute>
+        ),
       },
       {
-        path: 'userProfile',
-        element: <UserProfile/>
+        path: "manage-registered-camps",
+        element: (
+          <PrivateRoute>
+            <ManageRegisteredCamps />
+          </PrivateRoute>
+        ),
+      },
+
+      // participant related
+      {
+        path: "userProfile",
+        element: (
+          <PrivateRoute>
+            <UserProfile />
+          </PrivateRoute>
+        ),
       },
       {
-        path: 'add-camp',
-        element: <AddCamp/>
+        path: "analytics",
+        element: (
+          <PrivateRoute>
+            <Analytics />
+          </PrivateRoute>
+        ),
       },
-      {
-        path: 'manage-camps',
-        element: <ManageCamps/>
-      },
-      {
-        path: 'manage-registered-camps',
-        element: <ManageRegisteredCamps/>
-      },
-    ]
-  }
+    ],
+  },
 ]);
-export default router
+export default router;

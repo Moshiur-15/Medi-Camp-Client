@@ -44,6 +44,17 @@ const ManageRegisteredCamps = () => {
     }
   };
 
+  const handleDelate = async(id)=>{
+    try{
+      await axiosSecure.delete(`/delete-registered-camps/${id}`)
+      refetch()
+      toast.success("Participant deleted successfully!👍👍👍")
+    }
+    catch(err){
+      console.log(err)
+    }
+  }
+
   return (
     <div className="lg:mx-14 mt-4">
       <h1 className="text-2xl font-bold text-center mb-6 text-gray-800">
@@ -74,7 +85,7 @@ const ManageRegisteredCamps = () => {
                   {camp?.participantName}
                 </TableCell>
                 <TableCell className="border">{camp?.fees}</TableCell>
-                <TableCell className="border">Payment Status</TableCell>
+                <TableCell className="border">Paid | Unpaid</TableCell>
 
                 <TableCell className="border">
                   <div className="flex items-center gap-2">
@@ -86,15 +97,21 @@ const ManageRegisteredCamps = () => {
                       onChange={(e) => handleStatus(e.target.value, camp?._id)}
                     >
                       <option value="pending">Pending</option>
-                      <option value="Confirm">Confirm</option>
+                      <option value="confirm">Confirm</option>
                     </select>
                   </div>
                 </TableCell>
 
                 <TableCell className="text-3xl border">
-                  <p className="flex justify-center items-center hover:text-red-400 hover:scale-110 duration-700">
+                  <button
+                    disabled={camp?.participantStatus === 'confirm'}
+                    onClick={()=>handleDelate(camp?._id)}
+                    className={`flex justify-center items-center duration-700 ${
+                      camp?.participantStatus === 'confirm' ? 'text-gray-400 cursor-not-allowed' : 'hover:text-red-400 hover:scale-110'
+                    }`}
+                  >
                     <MdDeleteOutline />
-                  </p>
+                  </button>
                 </TableCell>
               </TableRow>
             ))}

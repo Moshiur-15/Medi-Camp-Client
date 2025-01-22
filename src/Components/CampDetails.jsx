@@ -28,8 +28,7 @@ const CampDetails = () => {
       setCamp(data);
     } catch (error) {
       console.error("Error fetching camp data:", error);
-    }
-    finally{
+    } finally {
       setLoading(false);
     }
   };
@@ -55,8 +54,8 @@ const CampDetails = () => {
           <LoadingSpinner />
         ) : (
           <div className="mx-5 md:mx-10 xl:mx-16">
-            <div className="flex flex-col lg:flex-row bg-white rounded-lg sm:mx-20 items-center">
-              <div className="lg:w-1/2 w-full h-full">
+            <div className="flex flex-col xl:flex-row bg-white rounded-lg sm:mx-20 items-center">
+              <div className="xl:w-1/2 w-full h-full">
                 <img
                   className="w-full h-full object-cover"
                   src={image}
@@ -64,11 +63,16 @@ const CampDetails = () => {
                 />
               </div>
 
-              <div className="lg:w-1/2 p-6 w-full ">
+              <div className="xl:w-1/2 p-6 w-full">
                 <h2 className="text-2xl font-bold mb-2 text-gray-800">
                   {campName}
                 </h2>
-                <p className="text-gray-600 mb-4">{description} Sessions on mental health awareness and free psychological consultations.Sessions on mental health awareness and free psychological consultations.Sessions on mental health awareness and free psychological consultations.</p>
+                <p className="text-gray-600 mb-4">
+                  {description} Sessions on mental health awareness and free
+                  psychological consultations.Sessions on mental health
+                  awareness and free psychological consultations.Sessions on
+                  mental health awareness and free psychological consultations.
+                </p>
                 <div className="bg-blue-100 rounded-lg p-4">
                   <h3 className="font-bold text-blue-900">
                     Additional Information

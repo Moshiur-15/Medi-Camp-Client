@@ -34,7 +34,7 @@ const CampJoinModal = ({ setOpen, open, camp, user }) => {
         campId: _id,
       };
       const { data: res } = await axiosSecure.post(
-        `/register-camp/${user?.email}`,
+        `/register-camp`,
         formData
       );
       setLoading(true);

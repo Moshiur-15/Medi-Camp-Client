@@ -96,8 +96,8 @@ export function ManageCamps() {
           </TableHead>
           <TableBody className="divide-y border">
             {camps
-              .reverse()
-              .map((camp) => (
+              ?.reverse()
+              ?.map((camp) => (
                 <TableRow
                   key={camp?._id}
                   className="bg-white dark:border-gray-700 dark:bg-gray-800"
