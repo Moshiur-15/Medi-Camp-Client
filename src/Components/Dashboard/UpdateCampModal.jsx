@@ -131,9 +131,7 @@ const UpdateCampModal = ({ setOpen, open, unique_camp, refetch }) => {
                     {...register("healthcareProfessionalName", {
                       required: "Healthcare Professional Name is required",
                     })}
-                    defaultValue={
-                      healthcareProfessional?.name
-                    }
+                    defaultValue={healthcareProfessional?.name}
                     placeholder="Dr.Name"
                     className="bg-gray-200 w-full p-2 rounded-sm"
                   />
@@ -205,7 +203,7 @@ const UpdateCampModal = ({ setOpen, open, unique_camp, refetch }) => {
               </div>
 
               {/* Row 4 */}
-              <div className="grid md:grid-cols-2 gap-4">
+              {/* <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700">
                     Start Time
@@ -215,7 +213,7 @@ const UpdateCampModal = ({ setOpen, open, unique_camp, refetch }) => {
                     placeholder="Ex: 10:00 AM "
                     className="bg-gray-200 w-full p-2 rounded-sm border-none"
                     type="time"
-                    defaultValue={time?.startTime}
+                    defaultValue={unique_camp?.time?.startTime}
                   />
                   {errors.startTime && (
                     <p className="text-red-500 text-sm mt-1">
@@ -240,10 +238,10 @@ const UpdateCampModal = ({ setOpen, open, unique_camp, refetch }) => {
                     </p>
                   )}
                 </div>
-              </div>
+              </div> */}
 
               {/* img */}
-              <div>
+              {/* <div>
                 <label className="block text-sm font-medium text-gray-700">
                   Photo
                 </label>
@@ -258,7 +256,7 @@ const UpdateCampModal = ({ setOpen, open, unique_camp, refetch }) => {
                     {errors.image.message}
                   </p>
                 )}
-              </div>
+              </div> */}
 
               {/* description  */}
               <div>

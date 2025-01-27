@@ -30,7 +30,6 @@ const AvailableCamp = () => {
   const handleLayout = () => {
     setLayout(!layout);
   };
-  console.log(layout)
 
   return (
     <section className="container mx-auto">

@@ -4,24 +4,21 @@ import usePublic from "../Hook/usePublic";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "./LoadingSpinner";
+import { useQuery } from "@tanstack/react-query";
 
 const PopulerCamp = () => {
   const axiosSecure = usePublic();
-  const [campsData, setCampsData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    fetchData();
-  }, []);
-  const fetchData = async () => {
-    try {
+
+  const { data:campsData, Loading } = useQuery({
+    queryKey: ["camps"],
+    queryFn: async () => {
       const { data } = await axiosSecure.get(`/camps`);
-      setCampsData(data);
-      console.log(data);
-      setLoading(false);
-    } catch (error) {
-      console.error("Error fetching camp data:", error);
+      return data;
     }
-  };
+  })
+
+  if(Loading) return <LoadingSpinner/>
+
   return (
     <section className="mx-0 xl:mx-16">
       <h2 className="text-3xl font-bold font-merriweather text-center">
@@ -31,7 +28,7 @@ const PopulerCamp = () => {
         Explore the most popular medical camps with the highest number of
         participants. Join now to secure your spot!
       </p>{" "}
-      {loading ? (
+      {Loading ? (
         <LoadingSpinner/>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 px-6  lg:px-10 xl:px-0">

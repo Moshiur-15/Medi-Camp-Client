@@ -15,6 +15,8 @@ import AddCamp from "../Page/Dashboard/AddCamp";
 import { ManageCamps } from "../Page/Dashboard/ManageCamps";
 import ManageRegisteredCamps from "../Page/Dashboard/ManageRegisteredCamps";
 import Analytics from "../Page/Dashboard/Analytics";
+import PaymentHistory from "../Page/Dashboard/PaymentHistory";
+import RegisteredCamps from "../Page/Dashboard/RegisteredCamps";
 
 const router = createBrowserRouter([
   {
@@ -111,6 +113,22 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <Analytics />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "registered-camps",
+        element: (
+          <PrivateRoute>
+            <RegisteredCamps/>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "payment-history",
+        element: (
+          <PrivateRoute>
+            <PaymentHistory/>
           </PrivateRoute>
         ),
       },

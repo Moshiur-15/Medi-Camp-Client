@@ -44,16 +44,41 @@ const ManageRegisteredCamps = () => {
     }
   };
 
-  const handleDelate = async(id)=>{
-    try{
-      await axiosSecure.delete(`/delete-registered-camps/${id}`)
-      refetch()
-      toast.success("Participant deleted successfully!👍👍👍")
-    }
-    catch(err){
-      console.log(err)
-    }
-  }
+  const handleDelate = async (id) => {
+    toast((t) => (
+      <div className="flex items-center gap-3">
+        <p className="text-lg font-medium text-gray-700">Are you sure?</p>
+        <div className="flex justify-between items-center gap-4">
+          <button
+            className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition"
+            onClick={async () => {
+              toast.dismiss(t.id);
+              try {
+                const { data } = await axiosSecure.delete(
+                  `/delete-registered-camps/${id}`
+                );
+                console.log(data);
+                if (data.deletedCount > 0) {
+                  refetch();
+                  toast.success("Participant deleted successfully!👍👍👍");
+                }
+              } catch (err) {
+                console.error(err);
+              }
+            }}
+          >
+            Yes
+          </button>
+          <button
+            className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
+            onClick={() => toast.dismiss(t.id)}
+          >
+            No
+          </button>
+        </div>
+      </div>
+    ));
+  };
 
   return (
     <div className="lg:mx-14 mt-4">
@@ -85,7 +110,7 @@ const ManageRegisteredCamps = () => {
                   {camp?.participantName}
                 </TableCell>
                 <TableCell className="border">{camp?.fees}</TableCell>
-                <TableCell className="border">Paid | Unpaid</TableCell>
+                <TableCell className="border">{camp?.PaymentStatus}</TableCell>
 
                 <TableCell className="border">
                   <div className="flex items-center gap-2">
@@ -104,10 +129,12 @@ const ManageRegisteredCamps = () => {
 
                 <TableCell className="text-3xl border">
                   <button
-                    disabled={camp?.participantStatus === 'confirm'}
-                    onClick={()=>handleDelate(camp?._id)}
+                    disabled={camp?.participantStatus === "confirm"}
+                    onClick={() => handleDelate(camp?._id)}
                     className={`flex justify-center items-center duration-700 ${
-                      camp?.participantStatus === 'confirm' ? 'text-gray-400 cursor-not-allowed' : 'hover:text-red-400 hover:scale-110'
+                      camp?.participantStatus === "confirm"
+                        ? "text-gray-400 cursor-not-allowed"
+                        : "hover:text-red-400 hover:scale-110"
                     }`}
                   >
                     <MdDeleteOutline />

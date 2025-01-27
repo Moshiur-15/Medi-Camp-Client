@@ -13,25 +13,27 @@ import {
 } from "recharts";
 import useAxiosSecure from "../../Hook/useAxiosSecure";
 import useAuth from "../../Hook/useAuth";
+import { useQuery } from "@tanstack/react-query";
+import LoadingSpinner from "../../Components/LoadingSpinner";
 
 const Analytics = () => {
-  const [camp, setCampData] = useState([]);
   const axiosSecure = useAxiosSecure();
-  const {user} = useAuth();
-  useEffect(() => {
-    const fetchCampData = async () => {
-      try {
-        const {data} = await axiosSecure.get(`/analytics/${user?.email}`);
-        setCampData(data);
-        console.log(data)
-      } catch (error) {
-        console.error("Error fetching analytics data:", error);
-      }
-    };
+  const { user } = useAuth();
 
-    fetchCampData();
-  }, [user?.email]);
-  console.log(camp)
+  const { data: camp, Loading } = useQuery({
+    queryKey: ["analytics", user?.email],
+    queryFn: async () => {
+      try {
+        const { data } = await axiosSecure(`/analytics/${user?.email}`);
+        return data;
+      } catch (err) {
+        console.error(err);
+      }
+    },
+  });
+
+  if (Loading) return <LoadingSpinner />;
+  console.log(camp);
 
   return (
     <div className="w-full min-w-screen-lg mx-auto">

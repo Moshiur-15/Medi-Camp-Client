@@ -32,6 +32,7 @@ const CampJoinModal = ({ setOpen, open, camp, user }) => {
         emergencyContact,
         age,
         campId: _id,
+        PaymentStatus:'unpaid'
       };
       const { data: res } = await axiosSecure.post(
         `/register-camp`,
