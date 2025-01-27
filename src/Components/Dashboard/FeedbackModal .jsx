@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 
 export const FeedbackModal = ({ openModal, setOpenModal, feedbackData }) => {
   const [rating, setRating] = useState(0);
-  const { register, handleSubmit, setValue } = useForm();
+  const { register, handleSubmit, setValue, formState: { errors } } = useForm();
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
 
@@ -51,15 +51,14 @@ export const FeedbackModal = ({ openModal, setOpenModal, feedbackData }) => {
               {feedbackData?.participantName}
             </p>
 
-            <div className="mt-4">
-              <p className="mb-2">Rate this participant:</p>
+            <div className="my-2">
               <StarRatings
                 rating={rating}
                 starRatedColor="gold"
                 changeRating={handleRatingChange}
                 numberOfStars={5}
                 name="rating"
-                starDimension="30px"
+                starDimension="25px"
                 starSpacing="5px"
               />
             </div>
@@ -67,9 +66,14 @@ export const FeedbackModal = ({ openModal, setOpenModal, feedbackData }) => {
             <textarea
               rows="4"
               placeholder="Write feedback..."
-              {...register("feedback", { required: true })}
+              {...register("feedback", { 
+                required: true,
+                minLength: { value: 100, message: "Feedback must be at least 100 characters long." },
+                maxLength: { value: 150, message: "Feedback must be less than 150 characters." }
+              })}
               className="w-full p-2 bg-gray-200/90 border-none rounded mt-2 ring-0 focus:border-gray-200"
             ></textarea>
+            {errors.feedback && <p className="text-red-400">{errors.feedback.message}</p>}
           </div>
 
           <Modal.Footer>
