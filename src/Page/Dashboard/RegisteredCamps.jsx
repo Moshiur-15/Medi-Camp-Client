@@ -15,14 +15,15 @@ import toast from "react-hot-toast";
 import Payment from "../../Components/Dashboard/Payment";
 import { useState } from "react";
 import { FeedbackModal } from "../../Components/Dashboard/FeedbackModal ";
+import useAuth from "../../Hook/useAuth";
 
 export default function RegisteredCamps() {
   const [openModal, setOpenModal] = useState(false);
   const [paymentData, setPaymentData] = useState([]);
   const [openFeedbackModal, setOpenFeedbackModal] = useState(false);
   const [feedbackData, setFeedbackData] = useState(null);
-
   const axiosSecure = useAxiosSecure();
+  const { user } = useAuth();
   const {
     data: registerData,
     Loading,
@@ -30,7 +31,7 @@ export default function RegisteredCamps() {
   } = useQuery({
     queryKey: ["registered-camps"],
     queryFn: async () => {
-      const { data } = await axiosSecure(`/registered-camps`);
+      const { data } = await axiosSecure(`/registered-camps/${user?.email}`);
       return data;
     },
   });
@@ -162,7 +163,7 @@ export default function RegisteredCamps() {
           </TableBody>
         ))}
       </Table>
-      
+
       {/* FeedbackModal  modal */}
       {openFeedbackModal && feedbackData && (
         <FeedbackModal
