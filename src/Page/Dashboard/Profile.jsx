@@ -1,15 +1,22 @@
 import React, { useState } from "react";
 import useAuth from "../../Hook/useAuth";
 import ProfileModal from "../../Components/ProfileModal";
-import { FaShieldAlt } from "react-icons/fa";
+import {
+  FaClock,
+  FaMapMarkerAlt,
+  FaPhoneAlt,
+  FaShieldAlt,
+  FaUser,
+} from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hook/useAxiosSecure";
+import useRole from "../../Hook/useRole";
 
-const OrganizerProfile = () => {
+const Profile = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
-  console.log(user);
+  const { role } = useRole();
 
   const { data: profile_data, refetch } = useQuery({
     queryKey: ["profile", user?.email],
@@ -31,7 +38,7 @@ const OrganizerProfile = () => {
               className="object-cover rounded-full h-24 w-24 border-4 border-white shadow-md"
             />
             <span className="absolute bottom-1 right-1 bg-blue-500 text-white p-1 rounded-full shadow-md">
-              <FaShieldAlt />
+              {role === "organizer" ? <FaShieldAlt /> : <FaUser />}
             </span>
           </div>
           <h2 className="mt-3 text-xl font-semibold text-gray-800">
@@ -42,23 +49,19 @@ const OrganizerProfile = () => {
 
         {/* Profile Details */}
         <div className="p-6 text-gray-700">
-          <p className="text-sm">
-            <span className="font-semibold">Location:</span>{" "}
+          <div className="flex items-center mb-2">
+            <FaMapMarkerAlt className="mr-2 text-blue-500" />
             {profile_data ? profile_data?.location : ""}
-          </p>
-          <p className="text-sm">
-            <span className="font-semibold">Contact:</span>{" "}
+          </div>
+          <div className="flex items-center mb-2">
+            <FaPhoneAlt className="mr-2 text-blue-500" />
             {profile_data ? profile_data?.contact : ""}
-          </p>
-          <p className="text-sm mb-2">
-            <span className="font-semibold">Created Time:</span>{" "}
-            {user?.metadata?.creationTime}
-          </p>
-          <p className="text-sm">
-            <span className="font-semibold">Last Login Time:</span>{" "}
-            {user?.metadata?.lastSignInTime}
-          </p>
+          </div>
 
+          <div className="flex items-center mb-2">
+            <FaClock className="mr-2 text-blue-500" />
+            {user?.metadata?.creationTime}
+          </div>
           <button
             onClick={() => setIsModalOpen(true)}
             className="w-full mt-4 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded-lg transition duration-300"
@@ -67,9 +70,13 @@ const OrganizerProfile = () => {
           </button>
         </div>
       </div>
-      <ProfileModal setIsModalOpen={setIsModalOpen} isModalOpen={isModalOpen} />
+      <ProfileModal
+        refetch={refetch}
+        setIsModalOpen={setIsModalOpen}
+        isModalOpen={isModalOpen}
+      />
     </section>
   );
 };
 
-export default OrganizerProfile;
+export default Profile;

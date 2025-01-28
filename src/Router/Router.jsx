@@ -8,7 +8,7 @@ import Register from "../auth/Register";
 import AvailableCamp from "../Page/AvailableCamp";
 import CampDetails from "../Components/campDetails";
 import WelcomeDashboard from "../Components/Dashboard/WelcomeDashboard";
-import OrganizerProfile from "../Page/Dashboard/OrganizerProfile";
+import Profile from "../Page/Dashboard/Profile";
 import UserProfile from "../Page/Dashboard/UserProfile";
 import PrivateRoute from "./PrivateRoute";
 import AddCamp from "../Page/Dashboard/AddCamp";
@@ -66,18 +66,16 @@ const router = createBrowserRouter([
         ),
       },
 
-      // organizer related
       {
-        path: "organizerProfile",
+        path: "profile",
         element: (
           <PrivateRoute>
-            <OrganizerRoute>
-              <OrganizerProfile />
-            </OrganizerRoute>
+            <Profile />
           </PrivateRoute>
         ),
       },
 
+      // organizer related
       {
         path: "add-camp",
         element: (
@@ -110,16 +108,6 @@ const router = createBrowserRouter([
       },
 
       // participant related
-      {
-        path: "userProfile",
-        element: (
-          <PrivateRoute>
-            <ParticipantRoute>
-              <UserProfile />
-            </ParticipantRoute>
-          </PrivateRoute>
-        ),
-      },
       {
         path: "analytics",
         element: (

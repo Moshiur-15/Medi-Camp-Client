@@ -72,7 +72,7 @@ const Login = () => {
                   type="email"
                   required
                   placeholder="Enter Your Email Here"
-                  className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-lime-500 bg-gray-200 text-gray-900"
+                  className="w-full px-3 py-2 border rounded-md  bg-gray-200 text-gray-900"
                   data-temp-mail-org="0"
                   {...register("email")}
                 />
@@ -87,7 +87,7 @@ const Login = () => {
                   type="password"
                   required
                   placeholder="*******"
-                  className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-blue-300 bg-gray-200 text-gray-900"
+                  className="w-full px-3 py-2 border rounded-md  bg-gray-200 text-gray-900"
                   {...register("password")}
                 />
               </div>

@@ -6,7 +6,13 @@ import { imgUp } from "../../api/Utils";
 import useAxiosSecure from "../../Hook/useAxiosSecure";
 import { useState } from "react";
 
-const UpdateCampModal = ({ setOpen, open, unique_camp, refetch }) => {
+const UpdateCampModal = ({
+  setOpen,
+  open,
+  unique_camp,
+  refetch,
+  setUniqueCamp,
+}) => {
   const axiosSecure = useAxiosSecure();
   const [loading, setLoading] = useState(false);
   const {
@@ -18,67 +24,61 @@ const UpdateCampModal = ({ setOpen, open, unique_camp, refetch }) => {
     date,
     description,
     _id,
-  } = unique_camp || {};
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-  const onSubmit = async (data) => {
+  } = unique_camp;
+  console.log(unique_camp);
+
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   formState: { errors },
+  // } = useForm();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     setLoading(true);
     try {
+      const form = e.target;
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
       const healthcareProfessional = {
-        specialization: data.specialization,
         name: data.healthcareProfessionalName,
-      };
-      const time = {
-        startTime: data.startTime,
-        endTime: data.endTime,
-      };
-      const fees = parseInt(data.feesData);
-      if (isNaN(fees) || fees <= 0) {
-        toast.error("Please enter a valid positive fee amount.");
-        return;
+        specialization: data.specialization,
       }
-      const img = data.image[0];
-      const image = await imgUp(img);
-
-      const updateData = {
-        fees,
+      const updateData={
         campName: data.campName,
         location: data.location,
-        date: data.date,
-        time,
-        description: data.description,
         healthcareProfessional,
-        image,
-      };
+        fees: parseFloat(data.fees),
+        date: data.date,
+        description: data.description,
+      }
 
       const { data: update } = await axiosSecure.patch(
-        `/update-camp/${_id}`,
+        `/update-camp/${unique_camp._id}`,
         updateData
       );
 
       if (update.modifiedCount > 0) {
+        toast.success("Camp updated successfully 👍");
         setOpen(false);
         refetch();
-        toast.success("Camp updated successfully 👍👍👍");
+        setUniqueCamp([]);
       }
     } catch (err) {
       console.error(err);
+      toast.error("Something went wrong.");
     } finally {
       setLoading(false);
     }
   };
-
   return (
     <>
       <Modal show={open} onClose={() => setOpen(false)}>
         <h2 className="text-center mt-8 lg:text-2xl text-xl font-merriweather font-semibold">
-          Participant Registration
+          Update Camp
         </h2>
 
-        <form className="overflow-y-auto" onSubmit={handleSubmit(onSubmit)}>
+        <form className="overflow-x-auto" onSubmit={handleSubmit}>
           <Modal.Body>
             <div className="space-y-6">
               {/* Row 1 */}
@@ -88,36 +88,24 @@ const UpdateCampModal = ({ setOpen, open, unique_camp, refetch }) => {
                     Camp Name
                   </label>
                   <input
+                    name="campName"
                     placeholder="Camp Name"
-                    className="bg-gray-200 w-full p-2 rounded-sm"
-                    {...register("campName", {
-                      required: "Camp Name is required",
-                    })}
                     defaultValue={campName}
+                    className="bg-gray-200 w-full p-2 rounded-sm"
+                    required
                   />
-                  {errors.campName && (
-                    <p className="text-red-500 text-sm mt-1">
-                      {errors.campName.message}
-                    </p>
-                  )}
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700">
                     Location
                   </label>
                   <input
+                    name="location"
                     placeholder="Ex: Dhaka, Bangladesh"
-                    className="bg-gray-200 w-full p-2 rounded-sm"
-                    {...register("location", {
-                      required: "Location is required",
-                    })}
                     defaultValue={location}
+                    className="bg-gray-200 w-full p-2 rounded-sm"
+                    required
                   />
-                  {errors.location && (
-                    <p className="text-red-500 text-sm mt-1">
-                      {errors.location.message}
-                    </p>
-                  )}
                 </div>
               </div>
 
@@ -128,36 +116,24 @@ const UpdateCampModal = ({ setOpen, open, unique_camp, refetch }) => {
                     Healthcare Professional Name
                   </label>
                   <input
-                    {...register("healthcareProfessionalName", {
-                      required: "Healthcare Professional Name is required",
-                    })}
+                    name="healthcareProfessionalName"
+                    placeholder="Dr. Name"
                     defaultValue={healthcareProfessional?.name}
-                    placeholder="Dr.Name"
                     className="bg-gray-200 w-full p-2 rounded-sm"
+                    required
                   />
-                  {errors.healthcareProfessionalName && (
-                    <p className="text-red-500 text-sm mt-1">
-                      {errors.healthcareProfessionalName.message}
-                    </p>
-                  )}
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700">
-                    Healthcare Professional Specialization
+                    Specialization
                   </label>
                   <input
-                    {...register("specialization", {
-                      required: "Specialization is required",
-                    })}
+                    name="specialization"
                     placeholder="Ex: Cardiologist"
-                    className="bg-gray-200 w-full p-2 rounded-sm"
                     defaultValue={healthcareProfessional?.specialization}
+                    className="bg-gray-200 w-full p-2 rounded-sm"
+                    required
                   />
-                  {errors.specialization && (
-                    <p className="text-red-500 text-sm mt-1">
-                      {errors.specialization.message}
-                    </p>
-                  )}
                 </div>
               </div>
 
@@ -169,20 +145,12 @@ const UpdateCampModal = ({ setOpen, open, unique_camp, refetch }) => {
                   </label>
                   <input
                     type="number"
-                    {...register("feesData", {
-                      required: "Fees is required",
-                      validate: (value) =>
-                        value > 0 || "Fees must be a positive number",
-                    })}
+                    name="fees"
                     placeholder="Camp Fees"
-                    className="bg-gray-200 w-full p-2 rounded-sm border-none"
                     defaultValue={fees}
+                    className="bg-gray-200 w-full p-2 rounded-sm"
+                    required
                   />
-                  {errors.feesData && (
-                    <p className="text-red-500 text-sm mt-1">
-                      {errors.feesData.message}
-                    </p>
-                  )}
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700">
@@ -190,97 +158,28 @@ const UpdateCampModal = ({ setOpen, open, unique_camp, refetch }) => {
                   </label>
                   <input
                     type="date"
-                    {...register("date", { required: "Camp Date is required" })}
-                    className="bg-gray-200 w-full p-2 rounded-sm border-none"
+                    name="date"
                     defaultValue={date}
+                    className="bg-gray-200 w-full p-2 rounded-sm"
+                    required
                   />
-                  {errors.date && (
-                    <p className="text-red-500 text-sm mt-1">
-                      {errors.date.message}
-                    </p>
-                  )}
                 </div>
               </div>
 
-              {/* Row 4 */}
-              {/* <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700">
-                    Start Time
-                  </label>
-                  <input
-                    {...register("startTime", { required: "Time is required" })}
-                    placeholder="Ex: 10:00 AM "
-                    className="bg-gray-200 w-full p-2 rounded-sm border-none"
-                    type="time"
-                    defaultValue={unique_camp?.time?.startTime}
-                  />
-                  {errors.startTime && (
-                    <p className="text-red-500 text-sm mt-1">
-                      {errors.startTime.message}
-                    </p>
-                  )}
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700">
-                    End Time
-                  </label>
-                  <input
-                    {...register("endTime", { required: "Time is required" })}
-                    placeholder="Ex: 10:00 AM - 2:00 PM"
-                    className="bg-gray-200 w-full p-2 rounded-sm border-none"
-                    type="time"
-                    defaultValue={time?.endTime}
-                  />
-                  {errors.endTime && (
-                    <p className="text-red-500 text-sm mt-1">
-                      {errors.endTime.message}
-                    </p>
-                  )}
-                </div>
-              </div> */}
-
-              {/* img */}
-              {/* <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Photo
-                </label>
-                <input
-                  type="file"
-                  className="block w-full border bg-gray-200"
-                  {...register("image", { required: "image is required" })}
-                  //   defaultValue={image}
-                />
-                {errors.image && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {errors.image.message}
-                  </p>
-                )}
-              </div> */}
-
-              {/* description  */}
+              {/* Description */}
               <div>
                 <label className="block text-sm font-medium text-gray-700">
                   Description
                 </label>
                 <textarea
-                  {...register("description", {
-                    required: "Description is required",
-                    minLength: {
-                      value: 100,
-                      message: "Description must be at least 100 characters",
-                    },
-                  })}
+                  name="description"
                   placeholder="Write about the camp."
-                  rows={6}
-                  className="bg-gray-200 w-full p-2 rounded-sm border-none"
                   defaultValue={description}
+                  rows={6}
+                  className="bg-gray-200 w-full p-2 rounded-sm ring-0 focus:bg-gray-50"
+                  required
+                  minLength={100}
                 />
-                {errors.description && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {errors.description.message}
-                  </p>
-                )}
               </div>
             </div>
           </Modal.Body>
@@ -289,6 +188,7 @@ const UpdateCampModal = ({ setOpen, open, unique_camp, refetch }) => {
             <Button
               className="text-white md:px-6 py-0 md:py-1 rounded-lg"
               type="submit"
+              disabled={loading}
             >
               {loading ? (
                 <AiOutlineLoading3Quarters className="animate-spin m-auto" />
@@ -299,7 +199,10 @@ const UpdateCampModal = ({ setOpen, open, unique_camp, refetch }) => {
             <Button
               color="gray"
               className="py-0 md:py-1 md:px-6"
-              onClick={() => setOpen(false)}
+              onClick={() => {
+                setOpen(false);
+                setUniqueCamp([]);
+              }}
             >
               Cancel
             </Button>

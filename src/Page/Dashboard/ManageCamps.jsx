@@ -87,11 +87,11 @@ export function ManageCamps() {
       <div className="overflow-x-auto">
         <Table hoverable className="text-center">
           <TableHead className="border">
-            <TableHeadCell>Camp name</TableHeadCell>
+            <TableHeadCell className="border">Camp name</TableHeadCell>
             <TableHeadCell className="border">Location</TableHeadCell>
-            <TableHeadCell>Professional</TableHeadCell>
+            <TableHeadCell className="border">Professional</TableHeadCell>
             <TableHeadCell className="border">Date</TableHeadCell>
-            <TableHeadCell>Time</TableHeadCell>
+            <TableHeadCell className="border">Time</TableHeadCell>
             <TableHeadCell className="border">Action</TableHeadCell>
           </TableHead>
           <TableBody className="divide-y border">
@@ -138,6 +138,7 @@ export function ManageCamps() {
         setOpen={setOpen}
         open={open}
         loading={loading}
+        setUniqueCamp={setUniqueCamp}
       />
     </section>
   );

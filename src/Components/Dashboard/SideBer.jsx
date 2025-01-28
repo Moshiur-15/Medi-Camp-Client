@@ -42,21 +42,11 @@ const SideBer = () => {
       </div>
       <div className="mt-auto">
         <div className="my-12">
-          {role === "organizer" && (
-            <NavLinks
-              to="/dashboard/organizerProfile"
-              name="OrganizerProfile"
-              social={<HiUserCircle />}
-            />
-          )}
-          {role === "participant" && (
-            <NavLinks
-              to="/dashboard/userProfile"
-              name="UserProfile"
-              social={<HiUserCircle />}
-            />
-          )}
-
+          <NavLinks
+            to="/dashboard/profile"
+            name="Profile"
+            social={<HiUserCircle />}
+          />
           <button
             onClick={handleLogOut}
             className="flex items-center px-1 hover:bg-gray-100 w-full"
