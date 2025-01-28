@@ -162,6 +162,7 @@ export default function RegisteredCamps() {
           </TableBody>
         ))}
       </Table>
+      
       {/* FeedbackModal  modal */}
       {openFeedbackModal && feedbackData && (
         <FeedbackModal

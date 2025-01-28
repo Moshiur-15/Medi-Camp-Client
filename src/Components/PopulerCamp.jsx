@@ -1,7 +1,6 @@
 import { Button } from "flowbite-react";
 import CampCard from "./CampCard";
 import usePublic from "../Hook/usePublic";
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "./LoadingSpinner";
 import { useQuery } from "@tanstack/react-query";

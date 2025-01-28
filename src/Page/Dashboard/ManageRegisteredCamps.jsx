@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import {
+  Pagination,
   Table,
   TableBody,
   TableCell,
@@ -14,6 +15,11 @@ import { MdDeleteOutline } from "react-icons/md";
 import toast from "react-hot-toast";
 
 const ManageRegisteredCamps = () => {
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const itemsPerPage = 10;
+
+  // ?page=${currentPage}&limit=${itemsPerPage}
+
   const axiosSecure = useAxiosSecure();
   const {
     data: menage_camps,
@@ -22,7 +28,9 @@ const ManageRegisteredCamps = () => {
   } = useQuery({
     queryKey: ["campsData"],
     queryFn: async () => {
-      const { data } = await axiosSecure(`/manage-registered-camps`);
+      const { data } = await axiosSecure(
+        `/manage-registered-camps`
+      );
       return data;
     },
   });
@@ -80,6 +88,9 @@ const ManageRegisteredCamps = () => {
     ));
   };
 
+  // const totalPages = Math.ceil(menage_camps?.total / itemsPerPage);
+  // console.log(totalPages);
+
   return (
     <div className="lg:mx-14 mt-4">
       <h1 className="text-2xl font-bold text-center mb-6 text-gray-800">
@@ -97,54 +108,74 @@ const ManageRegisteredCamps = () => {
             </TableHeadCell>
             <TableHeadCell className="border">Action</TableHeadCell>
           </TableHead>
-          <TableBody className="divide-y text-center">
-            {menage_camps?.map((camp) => (
-              <TableRow
-                key={camp?._id}
-                className="bg-white dark:border-gray-700 dark:bg-gray-800"
-              >
-                <TableCell className="border whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                  {camp?.campName}
-                </TableCell>
-                <TableCell className="border">
-                  {camp?.participantName}
-                </TableCell>
-                <TableCell className="border">{camp?.fees}</TableCell>
-                <TableCell className="border">{camp?.PaymentStatus}</TableCell>
+          {menage_camps?.length === 0 ? (
+            <p className="text-center text-3xl text-red-500 py-4">
+              No registered camps found.
+            </p>
+          ) : (
+            <TableBody className="divide-y text-center">
+              {menage_camps?.map((camp) => (
+                <TableRow
+                  key={camp?._id}
+                  className="bg-white dark:border-gray-700 dark:bg-gray-800"
+                >
+                  <TableCell className="border whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                    {camp?.campName}
+                  </TableCell>
+                  <TableCell className="border">
+                    {camp?.participantName}
+                  </TableCell>
+                  <TableCell className="border">{camp?.fees}</TableCell>
+                  <TableCell className="border">
+                    {camp?.PaymentStatus}
+                  </TableCell>
 
-                <TableCell className="border">
-                  <div className="flex items-center gap-2">
-                    <select
-                      required
-                      className="p-1 border-none rounded-md text-gray-900 whitespace-no-wrap bg-white"
-                      name="category"
-                      defaultValue={camp?.participantStatus}
-                      onChange={(e) => handleStatus(e.target.value, camp?._id)}
+                  <TableCell className="border">
+                    <div className="flex items-center gap-2">
+                      <select
+                        required
+                        className="p-1 border-none rounded-md text-gray-900 whitespace-no-wrap bg-white"
+                        name="category"
+                        defaultValue={camp?.participantStatus}
+                        onChange={(e) =>
+                          handleStatus(e.target.value, camp?._id)
+                        }
+                      >
+                        <option value="pending">Pending</option>
+                        <option value="confirm">Confirm</option>
+                      </select>
+                    </div>
+                  </TableCell>
+
+                  <TableCell className="text-3xl border">
+                    <button
+                      disabled={camp?.participantStatus === "confirm"}
+                      onClick={() => handleDelate(camp?._id)}
+                      className={`flex justify-center items-center duration-700 ${
+                        camp?.participantStatus === "confirm"
+                          ? "text-gray-400 cursor-not-allowed"
+                          : "hover:text-red-400 hover:scale-110"
+                      }`}
                     >
-                      <option value="pending">Pending</option>
-                      <option value="confirm">Confirm</option>
-                    </select>
-                  </div>
-                </TableCell>
-
-                <TableCell className="text-3xl border">
-                  <button
-                    disabled={camp?.participantStatus === "confirm"}
-                    onClick={() => handleDelate(camp?._id)}
-                    className={`flex justify-center items-center duration-700 ${
-                      camp?.participantStatus === "confirm"
-                        ? "text-gray-400 cursor-not-allowed"
-                        : "hover:text-red-400 hover:scale-110"
-                    }`}
-                  >
-                    <MdDeleteOutline />
-                  </button>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
+                      <MdDeleteOutline />
+                    </button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          )}
         </Table>
       </div>
+      {/* <div className="flex justify-center mt-4">
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={setCurrentPage}
+          layout="navigation"
+          showIcons
+          disabled={totalPages <= 1}
+        />
+      </div> */}
     </div>
   );
 };

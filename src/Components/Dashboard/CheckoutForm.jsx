@@ -14,7 +14,9 @@ const CheckoutForm = ({ data, setOpenModal, refetch }) => {
   const elements = useElements();
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
-  const { fees, _id } = data || {};
+  const { fees, _id, campName } =
+    data || {};
+  console.log(data);
 
   const { data: Payment, Loading } = useQuery({
     queryKey: ["paymentData"],
@@ -85,15 +87,33 @@ const CheckoutForm = ({ data, setOpenModal, refetch }) => {
         setOpenModal(false);
         toast.success(paymentIntent?.id);
 
+        // update payment status
         try {
           await axiosSecure.post(`/update-payment-status`, {
             PaymentStatus: "paid",
             id: _id,
           });
-          refetch()
+          refetch();
         } catch (error) {
           console.error("Error updating payment status:", error);
           toast.error("Error updating payment status.");
+        }
+
+        try {
+          // TODO:use server side aggregate
+          const transition_id = paymentIntent?.id;
+          const status = paymentIntent?.status;
+          const register_camp_id = _id;
+          const payment = {
+            transition_id,
+            status,
+            campName,
+            email: user?.email,
+            register_camp_id
+          };
+          await axiosSecure.post(`/post-payment-history`, payment);
+        } catch (error) {
+          console.error(error);
         }
       }
       setLoading(false);
