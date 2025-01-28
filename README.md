@@ -52,13 +52,12 @@
 
 ### Additional Features
     Responsive Design: Optimized for both mobile and desktop.
-    Pagination and Search Bar: Handle large data efficiently.
     Real-Time Data Updates: Dynamic updates for participant counts and payment statuses.
     Custom Analytics: Visualized camp data using Recharts.
 
 ### Tech Stack
     Frontend: React.js, React Hook Form, Tailwind CSS, flowbite react
-    Backend: Node.js, Express.js, MongoDB
-    Authentication: Firebase Authentication, JWT
+    Backend: Node.js, Express.js,
+    Authentication: Firebase Authentication,
     Payment: Stripe
     Charts Library: Recharts

@@ -22,7 +22,7 @@ const Feedback = () => {
   console.log(feedback);
 
   return (
-    <div className="lg:p-[63px] p-6 container mx-auto my-20">
+    <div className="lg:px-[63px] p-6 container mx-auto mb-20">
       <div className="text-center mb-8">
         <h2 className="text-3xl font-semibold text-gray-800">
           What Our Campers Say
