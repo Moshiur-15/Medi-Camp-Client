@@ -3,6 +3,7 @@ import name from "../../assets/name.png";
 import { IoMdHome } from "react-icons/io";
 import { MdEmail } from "react-icons/md";
 import { FaPhoneFlip } from "react-icons/fa6";
+import {Link} from "react-router-dom";
 import {
   Footer,
   FooterBrand,
@@ -14,13 +15,9 @@ import {
   FooterTitle,
 } from "flowbite-react";
 import {
-  BsDribbble,
   BsFacebook,
   BsGithub,
-  BsInstagram,
   BsLinkedin,
-  BsTwitter,
-  BsWhatsapp,
 } from "react-icons/bs";
 export default function CustomFooter() {
   return (
@@ -46,9 +43,9 @@ export default function CustomFooter() {
           <section>
             <FooterTitle title="All Camps" />
             <FooterLinkGroup col>
-              <FooterLink href="#">Login</FooterLink>
-              <FooterLink href="#">Register</FooterLink>
-              <FooterLink href="#">All Camps</FooterLink>
+              <Link to='/login'>Login</Link>
+              <Link to='/register'>Register</Link>
+              <Link to='/availableCamp'>All Camps</Link>
             </FooterLinkGroup>
           </section>
           {/* right */}
@@ -69,7 +66,7 @@ export default function CustomFooter() {
                     <span className="text-lg">
                       <MdEmail />
                     </span>
-                    <span>info@example.com</span>
+                    <span>masiurislam28@gmail.com</span>
                   </div>
                 </FooterLink>
                 <FooterLink>
@@ -77,7 +74,7 @@ export default function CustomFooter() {
                     <span className="text-lg">
                       <FaPhoneFlip />
                     </span>
-                    <span>+2524035440350</span>
+                    <span>+880-013270236396</span>
                   </div>
                 </FooterLink>
               </FooterLinkGroup>
@@ -88,10 +85,9 @@ export default function CustomFooter() {
         <div className="w-full sm:flex sm:items-center sm:justify-between">
           <FooterCopyright by="Medi Camp™. All Rights Reserved." year={2025} />
           <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
-            <FooterIcon href="#" icon={BsGithub} />
-            <FooterIcon href="#" icon={BsFacebook} />
-            <FooterIcon href="#" icon={BsLinkedin} />
-            <FooterIcon href="#" icon={BsWhatsapp} />
+            <FooterIcon href="https://github.com/Moshiur-15" target="_blank" icon={BsGithub} />
+            <FooterIcon href="https://www.facebook.com/" target="_blank" icon={BsFacebook} />
+            <FooterIcon href="https://www.linkedin.com/in/moshiur-islam28/" target="_blank" icon={BsLinkedin} />
           </div>
         </div>
       </div>
