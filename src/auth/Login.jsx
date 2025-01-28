@@ -19,7 +19,6 @@ const Login = () => {
     setLoading(true);
     try {
       await loginUser(email, password);
-      reset();
       toast.success("Login successful!");
       navigate(location.state ? location.state : "/");
     } catch (err) {

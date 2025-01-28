@@ -9,10 +9,13 @@ import NavLinks from "../Shard/NavLinks";
 import useAuth from "../../Hook/useAuth";
 import toast from "react-hot-toast";
 import { FaSignOutAlt } from "react-icons/fa";
+import useRole from "../../Hook/useRole";
 
 const SideBer = () => {
   const { logOut, setUser } = useAuth();
   const navigate = useNavigate();
+  const { role } = useRole();
+  console.log(role)
   const handleLogOut = async () => {
     try {
       await logOut();
@@ -35,13 +38,8 @@ const SideBer = () => {
         </Link>
       </div>
       <div className="flex flex-col flex-grow space-y-4">
-        {/* Organizer Section */}
-
-        <OrganizerNav />
-
-        {/* participant Section */}
-
-        <ParticipantNav />
+        {role === "participant" && <ParticipantNav />}
+        {role === "organizer" && <OrganizerNav />}
       </div>
       <div className="mt-auto">
         <div className="my-12">
