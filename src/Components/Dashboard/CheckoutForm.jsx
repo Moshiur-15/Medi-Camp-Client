@@ -102,14 +102,13 @@ const CheckoutForm = ({ data, setOpenModal, refetch }) => {
         try {
           // TODO:use server side aggregate
           const transition_id = paymentIntent?.id;
-          const status = paymentIntent?.status;
           const register_camp_id = _id;
           const payment = {
             transition_id,
-            status,
             campName,
             email: user?.email,
-            register_camp_id
+            register_camp_id,
+            fees
           };
           await axiosSecure.post(`/post-payment-history`, payment);
         } catch (error) {

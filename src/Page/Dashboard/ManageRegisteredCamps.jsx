@@ -44,7 +44,7 @@ const ManageRegisteredCamps = () => {
       );
       refetch();
       if (res.modifiedCount > 0) {
-        toast.success("Participant status updated successfully!👍👍👍");
+        toast.success("Participant status updated successfully!👍");
       }
       console.log(res);
     } catch (err) {
@@ -68,7 +68,7 @@ const ManageRegisteredCamps = () => {
                 console.log(data);
                 if (data.deletedCount > 0) {
                   refetch();
-                  toast.success("Participant deleted successfully!👍👍👍");
+                  toast.success("Participant deleted successfully!👍");
                 }
               } catch (err) {
                 console.error(err);

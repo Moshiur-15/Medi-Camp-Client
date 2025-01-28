@@ -1,64 +1,48 @@
 import React from "react";
-
+import { useQuery } from "@tanstack/react-query";
+import useAuth from "../../Hook/useAuth";
+import useAxiosSecure from "../../Hook/useAxiosSecure";
+import LoadingSpinner from "../../Components/LoadingSpinner";
+import { Table, TableCell, TableHeadCell, TableHead, TableRow,TableBody  } from "flowbite-react";
 const PaymentHistory = () => {
-  const paymentData = [
-    {
-      campName: "Tech Camp 2025",
-      fees: "$150",
-      paymentStatus: "paid",
-      confirmationStatus: "confirm",
-    },
-    {
-      campName: "Coding Bootcamp",
-      fees: "$200",
-      paymentStatus: "pending",
-      confirmationStatus: "waitlist",
-    },
-    {
-      campName: "AI Workshop",
-      fees: "$120",
-      paymentStatus: "paid",
-      confirmationStatus: "confirm",
-    },
-  ];
+  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
 
+  const { data: payment_data, isLOading } = useQuery({
+    queryKey: ["payment-history", user?.email],
+    queryFn: async () => {
+      const { data } = await axiosSecure(`/get-payment-history/${user?.email}`);
+      return data;
+    },
+  });
+  if (isLOading) return <LoadingSpinner />;
+  console.log(payment_data);
   return (
-    <div className="payment-history text-center">
-      <h2 className="text-xl font-semibold mb-4">Payment History</h2>
-      <table className="min-w-full table-auto border-collapse">
-        <thead>
-          <tr>
-            <th className="border p-2 font-merriweather">Camp Name</th>
-            <th className="border p-2 font-merriweather">Fees</th>
-            <th className="border p-2 font-merriweather">Payment Status</th>
-            <th className="border p-2 font-merriweather">Confirmation Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {paymentData?.map((data, index) => (
-            <tr key={index}>
-              <td className="border p-2">{data.campName}</td>
-              <td className="border p-2">{data.fees}</td>
-              <td
-                className={`border p-2 font-semibold ${
-                  data.paymentStatus === "paid" ? "text-green-400" : "text-red-400"
-                }`}
-              >
-                {data.paymentStatus}
-              </td>
-              <td
-                className={`border p-2 ${
-                  data.confirmationStatus === "confirm"
-                    ? "bg-blue-100"
-                    : "bg-gray-100"
-                }`}
-              >
-                {data.confirmationStatus}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="overflow-x-auto lg:mx-14">
+      <h2 className="font-merriweather font-bold text-center my-5 text-xl md:text-3xl mb-10">Payment History</h2>
+
+      <Table striped className="border text-center">
+        <TableHead className="border">
+          <TableHeadCell className="border">Camp Name</TableHeadCell>
+          <TableHeadCell className="border">Camp Fees</TableHeadCell>
+          <TableHeadCell className="border">Payment Status</TableHeadCell>
+          <TableHeadCell className="border">Confirmation Status</TableHeadCell>
+          <TableHeadCell className="border">Transition</TableHeadCell>
+        </TableHead>
+        {payment_data?.map((data) => (
+          <TableBody className="divide-y" key={data._id}>
+            <TableRow className="bg-white dark:border-gray-700 dark:bg-gray-800 hover:bg-gray-50">
+              <TableCell className="border whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                {data.campName}
+              </TableCell>
+              <TableCell className="border">{data.fees}</TableCell>
+              <TableCell className="border">{data.PaymentStatus}</TableCell>
+              <TableCell className="border">{data.participantStatus}</TableCell>
+              <TableCell className="border">{data.transition_id}</TableCell>
+            </TableRow>
+          </TableBody>
+        ))}
+      </Table>
     </div>
   );
 };

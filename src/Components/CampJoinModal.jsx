@@ -25,23 +25,21 @@ const CampJoinModal = ({ setOpen, open, camp, user }) => {
 
       const formData = {
         participantEmail,
-        participantStatus:'pending',
+        participantStatus: "pending",
         participantName,
         gender,
         phone,
         emergencyContact,
         age,
         campId: _id,
-        PaymentStatus:'unpaid'
+        PaymentStatus: "unpaid",
       };
-      const { data: res } = await axiosSecure.post(
-        `/register-camp`,
-        formData
-      );
       setLoading(true);
-      setOpen(false);
-      if(res?.insertedId){
+      const { data: res } = await axiosSecure.post(`/register-camp`, formData);
+
+      if (res?.insertedId) {
         toast.success("You have successfully joined Request👍");
+        setOpen(false);
       }
     } catch (err) {
       console.error(err);
