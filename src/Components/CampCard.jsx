@@ -56,7 +56,7 @@ const CampCard = ({ camp }) => {
         </p>
         <p className="flex items-center gap-2 text-lg font-semibold text-gray-800">
           <FaDollarSign className="text-blue-500" />
-          {fees === 0 ? "Free" : `$${fees}`}
+          {fees === 0 ? "Free" : `${fees}`}
         </p>
         <p className="flex items-center gap-2 text-gray-700 text-md font-bold">
           <FaUsers className="text-blue-500" />

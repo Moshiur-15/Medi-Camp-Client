@@ -93,13 +93,13 @@ export default function RegisteredCamps() {
       </h2>
       <Table striped className="border text-center">
         <TableHead className="border">
-          <TableHeadCell>Camp Name</TableHeadCell>
-          <TableHeadCell>Camp Fees</TableHeadCell>
-          <TableHeadCell>Participant Name</TableHeadCell>
-          <TableHeadCell>Payment Status</TableHeadCell>
-          <TableHeadCell>Confirmation Status</TableHeadCell>
-          <TableHeadCell>Action</TableHeadCell>
-          <TableHeadCell>FeedBack</TableHeadCell>
+          <TableHeadCell className="border">Camp Name</TableHeadCell>
+          <TableHeadCell className="border">Camp Fees</TableHeadCell>
+          <TableHeadCell className="border">Participant Name</TableHeadCell>
+          <TableHeadCell className="border">Payment Status</TableHeadCell>
+          <TableHeadCell className="border">Confirmation Status</TableHeadCell>
+          <TableHeadCell className="border">Action</TableHeadCell>
+          <TableHeadCell className="border">FeedBack</TableHeadCell>
         </TableHead>
         {registerData?.map((data) => (
           <TableBody className="divide-y" key={data._id}>
