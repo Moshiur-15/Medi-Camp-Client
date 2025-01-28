@@ -46,10 +46,12 @@ const AvailableCampCard = ({ camp, layout }) => {
         }`}
       >
         <div className="flex-grow">
-          <p className="flex items-center gap-2 text-gray-700 text-sm mb-1">
+          <p className="flex items-center gap-2 text-gray-500/80 text-sm mb-1 font-merriweather">
             <FaUserMd className="text-blue-500" />
             <span>{healthcareProfessional.name}</span>
-            <span className="text-blue-700">( {healthcareProfessional.specialization} )</span>
+            <span className="text-blue-700">
+              ( {healthcareProfessional.specialization} )
+            </span>
           </p>
           <h5 className="text-xl font-bold tracking-tight text-gray-900">
             {campName}
@@ -62,28 +64,22 @@ const AvailableCampCard = ({ camp, layout }) => {
             <FaMapMarkerAlt className="text-blue-500" />
             {location}
           </p>
-
-          <div className="mt-4 flex justify-between items-center text-sm">
-            <p className="flex items-center gap-2 text-lg font-semibold text-gray-800">
-              <FaDollarSign className="text-blue-500" />
-              {fees === 0 ? "Free" : `$${fees}`}
-            </p>
-            <p className="flex items-center gap-2 text-gray-700">
-              <FaUsers className="text-blue-500" />
-              {participantCount}
-            </p>
-          </div>
-
-          <div className="mt-4 flex justify-between items-center text-sm">
-            <p className="flex items-center gap-2 text-gray-700">
-              <FaCalendarAlt className="text-blue-500" />
-              {date}
-            </p>
-            <p className="flex items-center gap-2 text-gray-700">
-              <FaClock className="text-blue-500" />
-              {time?.startTime} - {time?.endTime}
-            </p>
-          </div>
+          <p className="flex items-center gap-2 text-gray-700">
+            <FaCalendarAlt className="text-blue-500" />
+            {date}
+          </p>
+          <p className="flex items-center gap-2 text-gray-700">
+            <FaClock className="text-blue-500" />
+            {time?.startTime} - {time?.endTime}
+          </p>
+          <p className="flex items-center gap-2 text-lg font-semibold text-gray-800">
+            <FaDollarSign className="text-blue-500" />
+            {fees === 0 ? "Free" : `$${fees}`}
+          </p>
+          <p className="flex items-center gap-2 text-gray-700">
+            <FaUsers className="text-blue-500" />
+            {participantCount}
+          </p>
         </div>
 
         <div className="mt-6">

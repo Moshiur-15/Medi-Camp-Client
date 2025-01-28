@@ -30,46 +30,38 @@ const CampCard = ({ camp }) => {
         alt={`${campName}`}
       />
 
-      <div className="space-y-4 p-4 flex-grow">
+      <div className="space-y-2 p-4 flex-grow">
+        <p className="flex items-center gap-2 text-gray-700 text-sm">
+          <FaUserMd className="text-blue-500" />
+          {healthcareProfessional.name}{" "}
+          <span className="text-blue-700">
+            ( {healthcareProfessional.specialization} )
+          </span>
+        </p>
+
         <h5 className="text-xl font-bold tracking-tight text-gray-900">
           {campName}
         </h5>
-
-        <div className="flex flex-wrap justify-between items-center gap-4">
-          <p className="flex items-center gap-2 text-gray-700 text-sm">
-            <FaUserMd className="text-blue-500" />
-            {healthcareProfessional.name}{" "}
-            <span className="text-blue-700">
-              ( {healthcareProfessional.specialization} )
-            </span>
-          </p>
-          <p className="flex items-center gap-2 text-gray-700 text-sm">
-            <FaMapMarkerAlt className="text-blue-500" />
-            {location}
-          </p>
-        </div>
-
-        <div className="flex flex-wrap items-center gap-4">
-          <p className="flex items-center gap-2 text-lg font-semibold text-gray-800 w-1/3">
-            <FaDollarSign className="text-blue-500" />
-            {fees === 0 ? "Free" : `$${fees}`}
-          </p>
-          <p className="flex items-center gap-2 text-gray-700 text-sm w-1/2">
-            <FaUsers className="text-blue-500" />
-            {participantCount}
-          </p>
-        </div>
-
-        <div className="flex flex-wrap items-center gap-4">
-          <p className="flex items-center gap-2 text-gray-700">
-            <FaCalendarAlt className="text-blue-500" />
-            {date}
-          </p>
-          <p className="flex items-center gap-2 text-gray-700 text-sm w-1/2">
-            <FaClock className="text-blue-500" />
-            {time?.startTime} - {time?.endTime}
-          </p>
-        </div>
+        <p className="flex items-center gap-2 text-gray-700 text-sm">
+          <FaMapMarkerAlt className="text-blue-500" />
+          {location}
+        </p>
+        <p className="flex items-center gap-2 text-gray-700 text-sm">
+          <FaCalendarAlt className="text-blue-500" />
+          {date}
+        </p>
+        <p className="flex items-center gap-2 text-gray-700 text-sm">
+          <FaClock className="text-blue-500" />
+          {time?.startTime} - {time?.endTime}
+        </p>
+        <p className="flex items-center gap-2 text-lg font-semibold text-gray-800">
+          <FaDollarSign className="text-blue-500" />
+          {fees === 0 ? "Free" : `$${fees}`}
+        </p>
+        <p className="flex items-center gap-2 text-gray-700 text-md font-bold">
+          <FaUsers className="text-blue-500" />
+          {participantCount}
+        </p>
       </div>
       <div className="mt-auto">
         <Link to={`/campsDetails/${_id}`}>

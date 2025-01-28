@@ -69,7 +69,7 @@ const CampJoinModal = ({ setOpen, open, camp, user, refetch }) => {
                   id="camp-name"
                   type="text"
                   defaultValue={campName}
-                  disabled
+                  readOnly
                   className="mt-1"
                 />
               </div>
@@ -80,7 +80,7 @@ const CampJoinModal = ({ setOpen, open, camp, user, refetch }) => {
                   id="location"
                   type="text"
                   defaultValue={location}
-                  disabled
+                  readOnly
                   className="mt-1"
                 />
               </div>
@@ -94,7 +94,7 @@ const CampJoinModal = ({ setOpen, open, camp, user, refetch }) => {
                   id="healthcare-professional"
                   type="text"
                   defaultValue={healthcareProfessional?.specialization}
-                  disabled
+                  readOnly
                   className="mt-1"
                 />
               </div>
@@ -105,7 +105,7 @@ const CampJoinModal = ({ setOpen, open, camp, user, refetch }) => {
                   id="camp-fee"
                   type="text"
                   defaultValue={`$${fees}`}
-                  disabled
+                  readOnly
                   className="mt-1"
                 />
               </div>

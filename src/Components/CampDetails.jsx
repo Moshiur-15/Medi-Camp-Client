@@ -58,7 +58,7 @@ const CampDetails = () => {
             <div className="flex flex-col xl:flex-row bg-white rounded-lg sm:mx-20 items-center">
               <div className="xl:w-1/2 w-full h-full">
                 <img
-                  className="w-full h-full object-cover"
+                  className="w-full h-[300px] lg:h-[400px] xl:h-full object-cover rounded-l-lg"
                   src={image}
                   alt="School-based health camp"
                 />
