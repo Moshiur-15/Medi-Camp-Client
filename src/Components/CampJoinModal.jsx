@@ -5,8 +5,14 @@ import { useForm } from "react-hook-form";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import useAxiosSecure from "../Hook/useAxiosSecure";
 
-const CampJoinModal = ({ setOpen, open, camp, user }) => {
-  const { campName, location, healthcareProfessional, fees, _id } = camp || {};
+const CampJoinModal = ({ setOpen, open, camp, user, refetch }) => {
+  const {
+    campName,
+    location,
+    healthcareProfessional,
+    fees,
+    _id,
+  } = camp || {};
   const {
     register,
     handleSubmit,
@@ -35,12 +41,10 @@ const CampJoinModal = ({ setOpen, open, camp, user }) => {
         PaymentStatus: "unpaid",
       };
       setLoading(true);
-      const { data: res } = await axiosSecure.post(`/register-camp`, formData);
-
-      if (res?.insertedId) {
-        toast.success("You have successfully joined Request👍");
-        setOpen(false);
-      }
+      await axiosSecure.post(`/register-camp`, formData);
+      refetch()
+      toast.success("You have successfully joined Request👍");
+      setOpen(false);
     } catch (err) {
       console.error(err);
       toast.error(err?.response?.data?.message);
@@ -84,12 +88,12 @@ const CampJoinModal = ({ setOpen, open, camp, user }) => {
               <div>
                 <Label
                   htmlFor="healthcare-professional"
-                  value={healthcareProfessional.name}
+                  value={healthcareProfessional?.name}
                 />
                 <TextInput
                   id="healthcare-professional"
                   type="text"
-                  defaultValue={healthcareProfessional.specialization}
+                  defaultValue={healthcareProfessional?.specialization}
                   disabled
                   className="mt-1"
                 />

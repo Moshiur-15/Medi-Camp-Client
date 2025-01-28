@@ -28,9 +28,7 @@ const ManageRegisteredCamps = () => {
   } = useQuery({
     queryKey: ["campsData"],
     queryFn: async () => {
-      const { data } = await axiosSecure(
-        `/manage-registered-camps`
-      );
+      const { data } = await axiosSecure(`/manage-registered-camps`);
       return data;
     },
   });
@@ -51,6 +49,7 @@ const ManageRegisteredCamps = () => {
       console.log(err);
     }
   };
+  console.log(menage_camps);
 
   const handleDelate = async (id) => {
     toast((t) => (
@@ -138,7 +137,10 @@ const ManageRegisteredCamps = () => {
                         name="category"
                         defaultValue={camp?.participantStatus}
                         onChange={(e) =>
-                          handleStatus(e.target.value, camp?._id)
+                          handleStatus(
+                            e.target.value,
+                            camp?._id,
+                          )
                         }
                       >
                         <option value="pending">Pending</option>

@@ -15,7 +15,6 @@ const SideBer = () => {
   const { logOut, setUser } = useAuth();
   const navigate = useNavigate();
   const { role } = useRole();
-  console.log(role)
   const handleLogOut = async () => {
     try {
       await logOut();

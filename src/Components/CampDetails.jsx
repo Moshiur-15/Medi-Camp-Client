@@ -13,25 +13,28 @@ import {
 import { Button } from "flowbite-react";
 import useAuth from "../Hook/useAuth";
 import CampJoinModal from "./CampJoinModal";
+import { useQuery } from "@tanstack/react-query";
 
 const CampDetails = () => {
+  const { user } = useAuth();
+  const [open, setOpen] = useState(false);
   const { id } = useParams();
   const axiosSecure = usePublic();
-  const [camp, setCamp] = useState([]);
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    fetchData();
-  }, [id]);
-  const fetchData = async () => {
-    try {
-      const { data } = await axiosSecure.get(`/campsDetails/${id}`);
-      setCamp(data);
-    } catch (error) {
-      console.error("Error fetching camp data:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+
+  const {
+    data: camp,
+    refetch,
+    Loading,
+  } = useQuery({
+    queryKey: ["camp", id],
+    queryFn: async () => {
+      const { data } = await axiosSecure(`/campsDetails/${id}`);
+      return data;
+    },
+  });
+
+  if (Loading) return <LoadingSpinner />;
+
   const {
     image,
     campName,
@@ -44,13 +47,11 @@ const CampDetails = () => {
     date,
     description,
   } = camp || {};
-  const { user } = useAuth();
-  const [open, setOpen] = useState(false);
 
   return (
     <section className="py-10 lg:py-16">
       <div className="container mx-auto">
-        {loading ? (
+        {Loading ? (
           <LoadingSpinner />
         ) : (
           <div className="mx-5 md:mx-10 xl:mx-16">
@@ -80,11 +81,15 @@ const CampDetails = () => {
                   <ul className="text-blue-800 text-sm mt-2 space-y-1.5">
                     <li>
                       <p className="flex items-center gap-2 text-gray-700 text-sm">
-                        <FaUserMd className="text-blue-500" />
-                        {healthcareProfessional.name}
-                        <span className="text-blue-700">
-                          ( {healthcareProfessional.specialization} )
-                        </span>
+                        {healthcareProfessional && (
+                          <>
+                            <FaUserMd className="text-blue-500" />
+                            {healthcareProfessional?.name}
+                            <span className="text-blue-700">
+                              ({healthcareProfessional.specialization})
+                            </span>
+                          </>
+                        )}
                       </p>
                     </li>
                     <li>
@@ -137,6 +142,7 @@ const CampDetails = () => {
                   user={user}
                   setOpen={setOpen}
                   open={open}
+                  refetch={refetch}
                 />
               </div>
             </div>
