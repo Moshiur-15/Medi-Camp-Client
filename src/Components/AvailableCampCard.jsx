@@ -22,8 +22,7 @@ const AvailableCampCard = ({ camp, layout }) => {
     time,
     date,
     description,
-  } = camp || {};
-
+  } = camp || {}
   return (
     <div
       className={`border border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-lg overflow-hidden h-full flex flex-col ${
