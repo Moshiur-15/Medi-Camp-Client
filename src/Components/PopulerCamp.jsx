@@ -19,7 +19,7 @@ const PopulerCamp = () => {
   if(Loading) return <LoadingSpinner/>
 
   return (
-    <section className="mx-0 xl:mx-16">
+    <section className="">
       <h2 className="text-3xl font-bold font-merriweather text-center">
         Popular Medical Camps
       </h2>
@@ -30,7 +30,7 @@ const PopulerCamp = () => {
       {Loading ? (
         <LoadingSpinner/>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 px-6  lg:px-10 xl:px-0">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
           {campsData
             ?.sort((a, b) => b.participantCount - a.participantCount)
             .slice(0, 6)

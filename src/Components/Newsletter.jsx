@@ -8,7 +8,7 @@ const Newsletter = () => {
     e.target.reset()
   };
   return (
-    <section className="mx-0 md:mx-6 xl:mx-16">
+    <section className="">
       <div
         className="relative py-12 sm:rounded-lg"
         style={{
@@ -19,7 +19,7 @@ const Newsletter = () => {
         }}
       >
         <div className="absolute bg-black opacity-50 inset-0 sm:rounded-lg"></div>
-        <div className="container mx-auto text-center text-white px-6 relative my-10 lg:my-16">
+        <div className="text-center text-white relative my-10 lg:my-16">
           <h2 className="text-xl md:text-2xl font-bold font-merriweather">
             Get the Latest Medi Camp Updates
           </h2>

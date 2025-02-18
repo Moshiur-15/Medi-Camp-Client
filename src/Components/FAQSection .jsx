@@ -1,17 +1,16 @@
 import React from "react";
 import { Accordion } from "flowbite-react";
-import Banner from "./Banner";
 import faq from "../assets/faq.png";
 
 const FAQSection = () => {
   return (
     <div className="container mx-auto">
-      <div className="mx-0 xl:mx-16">
+      <div className="">
         <h1 className="text-xl md:text-3xl font-bold text-center font-merriweather mb-1">
           Frequently Asked Questions
         </h1>
         <p className="mb-10 text-center md:text-2xl">Your Queries Answered</p>
-        <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-8 px-6 lg:px-24 xl:px-0">
+        <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-8">
           {/* FAQ Section */}
           <div>
             <Accordion>

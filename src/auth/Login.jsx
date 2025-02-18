@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
@@ -12,6 +12,7 @@ const Login = () => {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
   const location = useLocation();
+  const [loading2, serLoading2] = useState(false);
   const onSubmit = async (data) => {
     const email = data.email;
     const password = data.password;
@@ -31,6 +32,7 @@ const Login = () => {
 
   const handleGoogleSignIn = async () => {
     try {
+      serLoading2(true);
       const res = await googleLogin();
       const user = res?.user;
       const { data } = await axiosSecure.post(`/users/${user?.email}`, {
@@ -44,6 +46,8 @@ const Login = () => {
     } catch (err) {
       console.log(err);
       toast.error(err?.message);
+    } finally {
+      serLoading2(false);
     }
   };
 
@@ -122,8 +126,14 @@ const Login = () => {
             onClick={handleGoogleSignIn}
             className="flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer"
           >
-            <FcGoogle size={25} />
-            <p>Continue with Google</p>
+            {loading2 ? (
+              <AiOutlineLoading3Quarters className="animate-spin m-auto" />
+            ) : (
+              <>
+                <FcGoogle size={25} />
+                <p>Continue with Google</p>
+              </>
+            )}
           </div>
           <p className="px-6 text-sm text-center text-gray-400">
             Don&apos;t have an account yet?{" "}
