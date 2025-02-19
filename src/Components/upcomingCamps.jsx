@@ -31,7 +31,7 @@ const upcomingCamps = [
 
 const UpcomingMedicalCamps = () => {
   return (
-    <section className="container mx-auto px-4 py-10">
+    <section className="container mx-auto">
       <div className="mx-2 xl:mx-36">
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-2 text-[#27477D]">
           Upcoming Medical Camps

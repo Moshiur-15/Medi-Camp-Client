@@ -6,8 +6,8 @@ import { Navigation } from "swiper/modules";
 import { useQuery } from "@tanstack/react-query";
 import usePublic from "../Hook/usePublic";
 import LoadingSpinner from "./LoadingSpinner";
-import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io';
-import { Parallax } from 'react-parallax';
+import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
+import { Parallax } from "react-parallax";
 
 const Feedback = () => {
   const axiosSecure = usePublic();
@@ -22,9 +22,9 @@ const Feedback = () => {
   if (isLoading) return <LoadingSpinner />;
 
   return (
-    <Parallax 
-      bgImage="https://i.ibb.co/SXxV5kDL/depositphotos-52140233-stock-photo-team-or-group-of-doctors.webp" 
-      strength={500} 
+    <Parallax
+      bgImage="https://i.ibb.co.com/0yKbZRmL/medical-good-team-hospital-staff-doctors-nurse-illustration-1284-53038.jpg"
+      strength={500}
     >
       <div className="relative bg-slate-950 bg-opacity-50 py-20">
         <div className="mb-20 container mx-auto">
@@ -53,17 +53,26 @@ const Feedback = () => {
                 640: { slidesPerView: 1 },
                 768: { slidesPerView: 2 },
                 1024: { slidesPerView: 3 },
-                // 1440: { slidesPerView: 4 },
               }}
             >
-  
               {Array.isArray(feedback) &&
                 feedback.reverse().map((feedback, index) => (
                   <SwiperSlide
                     key={index}
                     className="p-6 bg-white rounded-lg text-left flex flex-col items-start gap-3 shadow-lg"
                   >
-                    <div className="flex items-center gap-3 flex-grow">
+                    <div className="">
+                      <p className="text-2xl text-gray-900 font-bold">
+                        {feedback.campName}
+                      </p>
+                      <p className="text-gray-600 text-lg">
+                        {feedback.feedback.slice(0, 80)}
+                      </p>
+                    </div>
+
+                    <hr className="my-2" />
+
+                    <div className="flex items-center gap-3">
                       <img
                         src={feedback.image}
                         alt={`${feedback.name}'s profile`}
@@ -79,26 +88,16 @@ const Feedback = () => {
                         </div>
                       </div>
                     </div>
-                    <hr className="my-2" />
-                    <div className="mt-auto">
-                      <p className="text-lg text-gray-900 font-bold">
-                        {feedback.campName}
-                      </p>
-                      <p className="text-gray-600 text-sm">
-                        {feedback.feedback.slice(0, 80)}...
-                      </p>
-                    </div>
                   </SwiperSlide>
                 ))}
             </Swiper>
 
             {/* Custom Navigation Buttons */}
-            <div className="absolute top-1/2 -translate-y-1/2 -left-0 xl:-left-10 z-50">
+            <div className="absolute left-0 right-0 z-10 flex justify-center gap-6 mt-8">
               <button className="custom-prev bg-blue-400 text-white p-2.5 rounded-full hover:bg-blue-600 duration-700">
                 <IoIosArrowBack />
               </button>
-            </div>
-            <div className="absolute top-1/2 -translate-y-1/2 -right-0 xl:-right-10 z-50">
+
               <button className="custom-next bg-blue-400 text-white p-2.5 rounded-full hover:bg-blue-600 duration-700">
                 <IoIosArrowForward />
               </button>

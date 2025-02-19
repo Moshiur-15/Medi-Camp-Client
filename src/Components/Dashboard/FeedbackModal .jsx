@@ -68,8 +68,8 @@ export const FeedbackModal = ({ openModal, setOpenModal, feedbackData }) => {
               placeholder="Write feedback..."
               {...register("feedback", { 
                 required: true,
-                minLength: { value: 100, message: "Feedback must be at least 100 characters long." },
-                maxLength: { value: 150, message: "Feedback must be less than 150 characters." }
+                minLength: { value: 80, message: "Feedback must be at least 100 characters long." },
+                maxLength: { value: 80, message: "Feedback must be less than 150 characters." }
               })}
               className="w-full p-2 bg-gray-200/90 border-none rounded mt-2 ring-0 focus:border-gray-200"
             ></textarea>

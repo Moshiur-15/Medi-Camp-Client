@@ -20,15 +20,15 @@ const Home = () => {
       <div className="my-14 lg:my-16 container mx-auto">
         <FAQSection />
       </div>
-      <div className="bg-gray-200/80">
+      <div className="">
         <UpcomingMedicalCamps />
       </div>
 
-      <div className="container mx-auto my-14 lg:my-16">
-        <Newsletter />
-      </div>
-      <div className="bg-gray-200/80">
+      <div className="my-14 lg:my-16">
         <Services />
+      </div>
+      <div className="container mx-auto mb-14 lg:mb-16">
+        <Newsletter />
       </div>
     </div>
   );
