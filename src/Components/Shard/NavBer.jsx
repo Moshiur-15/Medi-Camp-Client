@@ -23,7 +23,7 @@ export default function NavBer() {
       <Navbar
         fluid
         rounded
-        className="bg-background bg-white mx-0 lg:mx-6 xl:mx-14"
+        className="bg-background bg-white"
       >
         <Navbar.Brand>
           <img src={Logo} className="h-6 sm:h-6" alt="Flowbite React Logo" />

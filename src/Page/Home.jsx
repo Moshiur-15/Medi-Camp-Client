@@ -12,14 +12,14 @@ const Home = () => {
       <div className="my-14 lg:my-16 container mx-auto">
         <PopulerCamp />
       </div>
-      <div>
+      <div className="">
         <Feedback />
-      </div>
-      <div className="container mx-auto">
-        <Newsletter />
       </div>
       <div className="my-14 lg:my-16 container mx-auto">
         <FAQSection />
+      </div>
+      <div className="container mx-auto mb-20">
+        <Newsletter />
       </div>
     </div>
   );

@@ -11,6 +11,7 @@ const FAQSection = () => {
         </h1>
         <p className="mb-10 text-center md:text-2xl">Your Queries Answered</p>
         <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-8">
+          
           {/* FAQ Section */}
           <div>
             <Accordion>
@@ -64,9 +65,14 @@ const FAQSection = () => {
               </Accordion.Panel>
             </Accordion>
           </div>
+
           {/* Doctor Image */}
-          <div className="">
-            <img src={faq} alt="Doctor thinking " className="max-w-lg" />
+          <div className="flex justify-center md:justify-start">
+            <img
+              src={faq}
+              alt="Doctor thinking"
+              className="w-full md:max-w-lg"
+            />
           </div>
         </div>
       </div>

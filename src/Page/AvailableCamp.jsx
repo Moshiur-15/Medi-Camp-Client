@@ -21,6 +21,7 @@ const AvailableCamp = () => {
         `/camps?search=${searchQuery}&sort=${sort}`
       );
       setCampsData(data);
+      console.log(data)
     } catch (error) {
       console.error("Error fetching camp data:", error);
     } finally {
@@ -88,7 +89,7 @@ const AvailableCamp = () => {
               </button>
             </div>
             <div className={`grid ${layout? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1 sm:grid-cols-2 xl:grid-cols-3'} gap-6 px-4 lg:px-10 xl:px-0 `}>
-              {campsData.map((camp, index) => (
+              {campsData?.map((camp, index) => (
                 <AvailableCampCard layout={layout} camp={camp} key={index} />
               ))}
             </div>
