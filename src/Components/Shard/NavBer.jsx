@@ -24,7 +24,7 @@ const NavBer = () => {
   return (
     <nav className="bg-white shadow-md">
       <section className="container mx-auto">
-        <div className="flex justify-between items-center mx-2 xl:mx-36 py-3.5">
+        <div className="flex justify-between items-center mx-2 xl:mx-20 py-3.5">
           {/* Logo Section */}
           <Link to="/" className="flex items-center gap-2">
             <img src={Logo} className="h-8" alt="Logo" />

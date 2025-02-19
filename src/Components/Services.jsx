@@ -53,11 +53,11 @@ const service = [
 const Services = () => {
   return (
     <section className="container mx-auto">
-      <div className="mx-2 xl:mx-36">
+      <div className="mx-2 xl:mx-20">
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-2 text-[#27477D]">
           Services We Provide
         </h2>
-        <p className="mb-6 text-center text-lg md:text-xl">
+        <p className="mb-6 text-center text-lg md:text-2xl italic">
           Our medical camps offer a wide range of healthcare services
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

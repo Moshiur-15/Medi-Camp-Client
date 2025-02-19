@@ -19,11 +19,11 @@ const PopulerCamp = () => {
   if(Loading) return <LoadingSpinner/>
 
   return (
-    <section className="mx-2 xl:mx-36">
+    <section className="mx-2 xl:mx-20">
       <h2 className="text-[#27477D] text-3xl font-bold font-merriweather text-center">
         Popular Medical Camps
       </h2>
-      <p className="text-lg mb-8 max-w-xl mx-auto text-center">
+      <p className="text-lg mb-8 max-w-xl mx-auto text-center md:text-2xl italic">
         Explore the most popular medical camps with the highest number of
         participants. Join now to secure your spot!
       </p>{" "}

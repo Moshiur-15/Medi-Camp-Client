@@ -40,7 +40,7 @@ const Feedback = () => {
           </div>
 
           {/* Swiper Section */}
-          <div className="relative mx-2 xl:mx-36">
+          <div className="relative mx-2 xl:mx-20">
             <Swiper
               spaceBetween={30}
               navigation={{

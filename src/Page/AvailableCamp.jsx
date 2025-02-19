@@ -34,7 +34,7 @@ const AvailableCamp = () => {
 
   return (
     <section className="container mx-auto">
-      <div className="my-10 lg:my-16 xl:my-20 mx-2 xl:mx-36">
+      <div className="my-10 lg:my-16 xl:my-20 mx-2 xl:mx-20">
         <h2 className="text-3xl font-bold font-merriweather text-center text-[#27477D]">
           Explore Available Camps
         </h2>

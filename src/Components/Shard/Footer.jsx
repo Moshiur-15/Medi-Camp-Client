@@ -3,7 +3,7 @@ import name from "../../assets/name.png";
 import { IoMdHome } from "react-icons/io";
 import { MdEmail } from "react-icons/md";
 import { FaPhoneFlip } from "react-icons/fa6";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   Footer,
   FooterBrand,
@@ -14,15 +14,11 @@ import {
   FooterLinkGroup,
   FooterTitle,
 } from "flowbite-react";
-import {
-  BsFacebook,
-  BsGithub,
-  BsLinkedin,
-} from "react-icons/bs";
+import { BsFacebook, BsGithub, BsLinkedin } from "react-icons/bs";
 export default function CustomFooter() {
   return (
     <Footer container>
-      <div className="w-full container mx-auto py-10">
+      <div className="w-full py-10 container mx-auto px-2 xl:px-20">
         <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1 space-y-10 md:space-y-0">
           {/* left section */}
           <section className="flex flex-col space-y-2">
@@ -43,9 +39,9 @@ export default function CustomFooter() {
           <section>
             <FooterTitle title="All Camps" />
             <FooterLinkGroup col>
-              <Link to='/login'>Login</Link>
-              <Link to='/register'>Register</Link>
-              <Link to='/availableCamp'>All Camps</Link>
+              <Link to="/login">Login</Link>
+              <Link to="/register">Register</Link>
+              <Link to="/availableCamp">All Camps</Link>
             </FooterLinkGroup>
           </section>
           {/* right */}
@@ -85,9 +81,21 @@ export default function CustomFooter() {
         <div className="w-full sm:flex sm:items-center sm:justify-between">
           <FooterCopyright by="Medi Camp™. All Rights Reserved." year={2025} />
           <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
-            <FooterIcon href="https://github.com/Moshiur-15" target="_blank" icon={BsGithub} />
-            <FooterIcon href="https://www.facebook.com/" target="_blank" icon={BsFacebook} />
-            <FooterIcon href="https://www.linkedin.com/in/moshiur-islam28/" target="_blank" icon={BsLinkedin} />
+            <FooterIcon
+              href="https://github.com/Moshiur-15"
+              target="_blank"
+              icon={BsGithub}
+            />
+            <FooterIcon
+              href="https://www.facebook.com/"
+              target="_blank"
+              icon={BsFacebook}
+            />
+            <FooterIcon
+              href="https://www.linkedin.com/in/moshiur-islam28/"
+              target="_blank"
+              icon={BsLinkedin}
+            />
           </div>
         </div>
       </div>
