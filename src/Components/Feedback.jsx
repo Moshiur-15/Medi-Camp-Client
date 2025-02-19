@@ -40,7 +40,7 @@ const Feedback = () => {
           </div>
 
           {/* Swiper Section */}
-          <div className="relative">
+          <div className="relative mx-2 xl:mx-36">
             <Swiper
               spaceBetween={30}
               navigation={{
@@ -53,9 +53,10 @@ const Feedback = () => {
                 640: { slidesPerView: 1 },
                 768: { slidesPerView: 2 },
                 1024: { slidesPerView: 3 },
-                1440: { slidesPerView: 4 },
+                // 1440: { slidesPerView: 4 },
               }}
             >
+  
               {Array.isArray(feedback) &&
                 feedback.reverse().map((feedback, index) => (
                   <SwiperSlide
@@ -78,6 +79,7 @@ const Feedback = () => {
                         </div>
                       </div>
                     </div>
+                    <hr className="my-2" />
                     <div className="mt-auto">
                       <p className="text-lg text-gray-900 font-bold">
                         {feedback.campName}

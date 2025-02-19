@@ -34,8 +34,8 @@ const AvailableCamp = () => {
 
   return (
     <section className="container mx-auto">
-      <div className="my-10 lg:my-16 xl:my-20 mx-0 xl:mx-16">
-        <h2 className="text-3xl font-bold font-merriweather text-center">
+      <div className="my-10 lg:my-16 xl:my-20 mx-2 xl:mx-36">
+        <h2 className="text-3xl font-bold font-merriweather text-center text-[#27477D]">
           Explore Available Camps
         </h2>
         <p className="text-lg mb-8 max-w-xl mx-auto text-center">

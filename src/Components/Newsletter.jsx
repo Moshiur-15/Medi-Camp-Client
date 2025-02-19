@@ -8,7 +8,7 @@ const Newsletter = () => {
     e.target.reset()
   };
   return (
-    <section className="">
+    <section className="mx-2 xl:mx-36">
       <div
         className="relative py-12 sm:rounded-lg"
         style={{

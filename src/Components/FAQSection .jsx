@@ -5,8 +5,8 @@ import faq from "../assets/faq.png";
 const FAQSection = () => {
   return (
     <div className="container mx-auto">
-      <div className="">
-        <h1 className="text-xl md:text-3xl font-bold text-center font-merriweather mb-1">
+      <div className="mx-2 xl:mx-36">
+        <h1 className="text-[#27477D] text-xl md:text-3xl font-bold text-center font-merriweather mb-1">
           Frequently Asked Questions
         </h1>
         <p className="mb-10 text-center md:text-2xl">Your Queries Answered</p>

@@ -19,8 +19,8 @@ const PopulerCamp = () => {
   if(Loading) return <LoadingSpinner/>
 
   return (
-    <section className="">
-      <h2 className="text-3xl font-bold font-merriweather text-center">
+    <section className="mx-2 xl:mx-36">
+      <h2 className="text-[#27477D] text-3xl font-bold font-merriweather text-center">
         Popular Medical Camps
       </h2>
       <p className="text-lg mb-8 max-w-xl mx-auto text-center">
