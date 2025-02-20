@@ -58,7 +58,7 @@ const UpcomingMedicalCamps = () => {
                   {camp.date}
                 </p>
                 <h3 className="text-xl font-semibold">{camp.title}</h3>
-                <p className="mt-2 text-gray-700">{camp.description}</p>
+                <p className="text-gray-700">{camp.description}</p>
               </div>
             </div>
           ))}

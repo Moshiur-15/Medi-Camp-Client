@@ -19,6 +19,8 @@ import PaymentHistory from "../Page/Dashboard/PaymentHistory";
 import RegisteredCamps from "../Page/Dashboard/RegisteredCamps";
 import OrganizerRoute from "./OrganizerRoute";
 import ParticipantRoute from "./ParticipantRoute";
+import Gallery from "../Components/Gallery";
+import AboutUs from "../Components/AboutUs";
 
 const router = createBrowserRouter([
   {
@@ -35,8 +37,16 @@ const router = createBrowserRouter([
         element: <AvailableCamp />,
       },
       {
+        path: "/gallery",
+        element: <Gallery />,
+      },
+      {
         path: "/campsDetails/:id",
         element: <CampDetails />,
+      },
+      {
+        path: "/about",
+        element: <AboutUs />,
       },
       {
         path: "/login",
