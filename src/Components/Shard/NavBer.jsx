@@ -55,7 +55,7 @@ const NavBer = () => {
                         : "/dashboard/profile"
                     }
                     className={({ isActive }) =>
-                      `text-lg font-semibold transition duration-300 ${
+                      `text-lg font-semibold transition duration-300 hover:scale-110 ${
                         isActive
                           ? "text-blue-500 underline"
                           : "text-gray-700 hover:text-blue-500"
@@ -122,7 +122,7 @@ const NavBer = () => {
             ) : (
               <Link
                 to="/login"
-                className="bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-lg"
+                className="bg-blue-500 hover:bg-blue-50 border  border-transparent hover:border-blue-200 hover:text-black text-white px-5 py-2 duration-500"
               >
                 Join Us
               </Link>
@@ -161,7 +161,7 @@ const NavBer = () => {
                       ? "/about"
                       : "/dashboard/profile"
                   }
-                  className="text-lg font-semibold text-gray-700 hover:text-blue-500 py-2 hover:underline"
+                  className="text-lg font-semibold text-gray-700 hover:scale-110 duration-300 hover:text-blue-500 py-2"
                   onClick={() => setMenuOpen(false)}
                 >
                   {item}

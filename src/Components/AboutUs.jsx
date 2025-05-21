@@ -31,7 +31,7 @@ const AboutUs = () => {
       {/* Content Section */}
       <div className="text-center mt-12">
         {/* Mission, Vision, Who We Are */}
-        <div className="mt-12 grid gap-8 md:grid-cols-3">
+        <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {/* Who We Are */}
           <div className="bg-white shadow-lg p-6 rounded-lg text-center">
             <FaUsers className="text-blue-500 text-4xl mx-auto mb-4" />

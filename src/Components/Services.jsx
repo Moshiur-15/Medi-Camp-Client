@@ -64,7 +64,7 @@ const Services = () => {
           {service.map((service) => (
             <div
               key={service.id}
-              className="rounded-xl shadow-md p-6 bg-white flex flex-col items-center text-center"
+              className="hover:shadow-md p-6 bg-white flex flex-col items-center text-center"
             >
               {service.icon}
               <h3 className="text-xl font-semibold mt-3">{service.title}</h3>

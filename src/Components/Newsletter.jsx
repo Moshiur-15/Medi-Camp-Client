@@ -10,7 +10,7 @@ const Newsletter = () => {
   return (
     <section className="mx-2 xl:mx-20">
       <div
-        className="relative py-12 sm:rounded-lg"
+        className="relative py-12"
         style={{
           backgroundImage: `url(${newsletter})`,
           backgroundSize: "cover",
@@ -18,7 +18,7 @@ const Newsletter = () => {
           backgroundRepeat: "no-repeat",
         }}
       >
-        <div className="absolute bg-black opacity-50 inset-0 sm:rounded-lg"></div>
+        <div className="absolute bg-black opacity-50 inset-0"></div>
         <div className="text-center text-white relative my-10 lg:my-16">
           <h2 className="text-xl md:text-2xl font-bold font-merriweather">
             Get the Latest Medi Camp Updates
@@ -35,7 +35,7 @@ const Newsletter = () => {
               name="email"
               id="email"
               placeholder="Enter your email"
-              className="w-full md:max-w-xs mb-2 md:mb-0 focus:outline-none"
+              className="w-full md:max-w-xs mb-2 md:mb-0 focus:outline-none ring-0 outline:ring-none"
               required
             />
             <button

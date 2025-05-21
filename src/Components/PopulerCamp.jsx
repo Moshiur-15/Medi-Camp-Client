@@ -39,12 +39,12 @@ const PopulerCamp = () => {
             ))}
         </div>
       )}
-      <Button
+      <button
         color=""
-        className="bg-blue-500 hover:bg-blue-600 text-white px-4 mx-auto mt-10 lg:mt-16"
+        className="bg-blue-500 hover:bg-blue-50 border  border-transparent hover:border-blue-200 hover:text-black text-white px-5 py-2 duration-300 mx-auto flex mt-10 lg:mt-16"
       >
-        <Link to="/availableCamp">View All Medical Camps</Link>
-      </Button>
+        <Link to="/availableCamp">View All Medical Camps...</Link>
+      </button>
     </section>
   );
 };

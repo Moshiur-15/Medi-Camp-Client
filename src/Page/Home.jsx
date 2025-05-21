@@ -32,9 +32,9 @@ const Home = () => {
         <Services />
       </div>
 
-      <div className="container mx-auto">
+      {/* <div className="container mx-auto">
         <OurTeam/>
-      </div>
+      </div> */}
 
       <div className="container mx-auto my-14 lg:my-16">
         <Newsletter />
