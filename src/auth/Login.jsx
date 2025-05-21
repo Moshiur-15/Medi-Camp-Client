@@ -76,7 +76,7 @@ const Login = () => {
                   type="email"
                   required
                   placeholder="Enter Your Email Here"
-                  className="w-full px-3 py-2 border rounded-md  bg-gray-200 text-gray-900"
+                  className="w-full px-3 py-2 bg-gray-200 text-gray-900"
                   data-temp-mail-org="0"
                   {...register("email")}
                 />
@@ -91,7 +91,7 @@ const Login = () => {
                   type="password"
                   required
                   placeholder="*******"
-                  className="w-full px-3 py-2 border rounded-md  bg-gray-200 text-gray-900"
+                  className="w-full px-3 py-2 bg-gray-200 text-gray-900"
                   {...register("password")}
                 />
               </div>
@@ -100,7 +100,7 @@ const Login = () => {
             <div>
               <button
                 type="submit"
-                className="bg-blue-500 w-full rounded-md py-3 text-white"
+                className="bg-blue-500 hover:bg-blue-50 border py-2 border-transparent hover:border-blue-200 hover:text-black text-white w-full duration-300"
               >
                 {loading ? (
                   <AiOutlineLoading3Quarters className="animate-spin m-auto" />
@@ -124,7 +124,7 @@ const Login = () => {
           </div>
           <div
             onClick={handleGoogleSignIn}
-            className="flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer"
+            className="flex justify-center items-center space-x-2 border my-3 p-2 border-gray-300 border-rounded cursor-pointer"
           >
             {loading2 ? (
               <AiOutlineLoading3Quarters className="animate-spin m-auto" />

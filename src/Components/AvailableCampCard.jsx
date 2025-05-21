@@ -22,10 +22,10 @@ const AvailableCampCard = ({ camp, layout }) => {
     time,
     date,
     description,
-  } = camp || {}
+  } = camp || {};
   return (
     <div
-      className={`border border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-lg overflow-hidden h-full flex flex-col ${
+      className={`bg-blue-100/80  duration-300 flex flex-col hover:shadow-[0_8px_40px_rgba(37,99,235,0.30)] overflow-hidden h-full ${
         layout ? "xl:flex-row" : ""
       }`}
     >
@@ -45,50 +45,45 @@ const AvailableCampCard = ({ camp, layout }) => {
         }`}
       >
         <div className="flex-grow">
-          <p className="flex items-center gap-2 text-gray-500/80 text-sm mb-1 font-merriweather">
+          <p className="flex items-center gap-2 text-gray-700 text-sm">
             <FaUserMd className="text-blue-500" />
-            <span>{healthcareProfessional.name}</span>
-            <span className="text-blue-700">
-              ( {healthcareProfessional.specialization} )
+            {healthcareProfessional?.name}{" "}
+            <span className="text-blue-700 font-medium">
+              ({healthcareProfessional?.specialization})
             </span>
           </p>
-          <h5 className="text-xl font-bold tracking-tight text-gray-900">
-            {campName}
-          </h5>
-          <p className="text-gray-600 text-sm md:text-base mt-2 line-clamp-3">
-            {description.slice(0, 130)}...
-          </p>
 
-          <p className="flex items-center gap-2 text-gray-700 text-sm mt-2">
-            <FaMapMarkerAlt className="text-blue-500" />
-            {location}
+          <h3 className="text-xl font-bold text-gray-900">{campName}</h3>
+          <p className="text-gray-600 text-sm mt-1 mb-2 md:text-base line-clamp-3">
+            {description.slice(0, 150)}...
           </p>
-          <p className="flex items-center gap-2 text-gray-700">
-            <FaCalendarAlt className="text-blue-500" />
-            {date}
-          </p>
-          <p className="flex items-center gap-2 text-gray-700">
-            <FaClock className="text-blue-500" />
-            {time?.startTime} - {time?.endTime}
-          </p>
-          <p className="flex items-center gap-2 text-lg font-semibold text-gray-800">
-            <FaDollarSign className="text-blue-500" />
-            {fees === 0 ? "Free" : `${fees}`}
-          </p>
-          <p className="flex items-center gap-2 text-gray-700">
-            <FaUsers className="text-blue-500" />
-            {participantCount}
-          </p>
+          <div className="space-y-1 text-sm text-gray-700 flex">
+            <p className="flex items-center gap-2 w-1/2">
+              <FaMapMarkerAlt className="text-blue-500" />
+              {location.slice(0, 18)}
+            </p>
+            <p className="flex items-center gap-2 w-1/2">
+              <FaClock className="text-blue-500" />
+              {time?.startTime} - {time?.endTime}
+            </p>
+          </div>
+          <div className="space-y-1 text-sm text-gray-700 flex ">
+            <p className="flex items-center gap-2 w-1/2">
+              <FaCalendarAlt className="text-blue-500 " />
+              {date}
+            </p>
+            <p className="flex items-center gap-2 font-bold w-1/2">
+              <FaUsers className="text-blue-500" />
+              Participants: {participantCount}
+            </p>
+          </div>
         </div>
 
-        <div className="mt-6">
+        <div className="mt-6 flex justify-end">
           <Link to={`/campsDetails/${_id}`}>
-            <Button
-              color=""
-              className="bg-blue-500 hover:bg-blue-600 text-white px-4 rounded-lg w-full"
-            >
+            <button className="bg-blue-500 hover:bg-blue-200/70 border  border-transparent hover:border-blue-200 hover:text-black text-white px-6 py-2 duration-500">
               See Details
-            </Button>
+            </button>
           </Link>
         </div>
       </div>

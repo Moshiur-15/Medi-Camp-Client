@@ -94,7 +94,7 @@ const Register = () => {
                   type="text"
                   id="name"
                   placeholder="Enter Your Name Here"
-                  className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-0 bg-gray-200 text-gray-900"
+                  className="w-full px-3 py-2 border-gray-300 focus:outline-none focus:ring-0 bg-gray-200 text-gray-900"
                   {...register("name", { required: "Name is required" })}
                 />
                 {errors.name && (
@@ -114,6 +114,7 @@ const Register = () => {
                   id="image"
                   name="image"
                   accept="image/*"
+                  className=" border w-full bg-gray-100"
                   {...register("image", { required: "Image is required" })}
                 />
                 {errors.image && (
@@ -131,7 +132,7 @@ const Register = () => {
                   type="email"
                   required
                   placeholder="Enter Your Email Here"
-                  className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-0 bg-gray-200 text-gray-900"
+                  className="w-full px-3 py-2 border-gray-300 focus:outline-none focus:ring-0 bg-gray-200 text-gray-900"
                   {...register("email", {
                     required: "Email is required",
                   })}
@@ -151,7 +152,7 @@ const Register = () => {
                   type="password"
                   required
                   placeholder="*******"
-                  className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-0 bg-gray-200 text-gray-900"
+                  className="w-full px-3 py-2 border-gray-300 focus:outline-none focus:ring-0 bg-gray-200 text-gray-900"
                   {...register("password", {
                     required: "Password is required",
                     minLength: {
@@ -171,7 +172,7 @@ const Register = () => {
             <div>
               <button
                 type="submit"
-                className="bg-blue-500 w-full rounded-md py-3 text-white"
+                className="bg-blue-500 hover:bg-blue-50 border py-2 border-transparent hover:border-blue-200 hover:text-black text-white w-full duration-300"
                 disabled={loading}
               >
                 {loading ? (
@@ -192,7 +193,7 @@ const Register = () => {
           </div>
           <div
             onClick={handleGoogleSignIn}
-            className="flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer"
+            className="flex justify-center items-center space-x-2 border my-3 p-2 border-gray-300 border-rounded cursor-pointer"
           >
             {loading2 ? (
               <AiOutlineLoading3Quarters className="animate-spin m-auto" />

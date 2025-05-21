@@ -52,7 +52,7 @@ const AvailableCamp = () => {
               id="search"
               aria-label="Search camps"
               placeholder="Search camps..."
-              className="py-2 px-4 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-0"
+              className="px-4 w-full border border-gray-300 focus:outline-none focus:ring-0 focus:ring-none"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -65,7 +65,7 @@ const AvailableCamp = () => {
             <select
               id="sort"
               aria-label="Sort camps"
-              className="py-2 px-4 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="py-2 px-4 w-full border border-gray-300 focus:outline-none focus:ring-0 focus:ring-none"
               value={sort}
               onChange={(e) => setSort(e.target.value)}
             >
@@ -82,7 +82,7 @@ const AvailableCamp = () => {
           <section>
             <div className="flex justify-center items-center mb-8">
               <button
-                className="py-2 px-10 bg-blue-500 hover:bg-blue-600 text-white rounded-lg focus:outline-none "
+                className="py-2 px-10 bg-blue-500 hover:bg-blue-200/70 border  border-transparent hover:border-blue-200 hover:text-black text-white duration-500"
                 onClick={handleLayout}
               >
                 {layout ? "Switch to 3 Columns" : "Switch to 2 Columns"}
